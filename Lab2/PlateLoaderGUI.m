@@ -22,7 +22,7 @@ function varargout = PlateLoaderGUI(varargin)
 
 % Edit the above text to modify the response to help PlateLoaderGUI
 
-% Last Modified by GUIDE v2.5 18-Mar-2016 12:02:22
+% Last Modified by GUIDE v2.5 18-Mar-2016 12:30:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -170,10 +170,14 @@ function DisconnectButton_Callback(hObject, eventdata, handles)
 % hObject    handle to DisconnectButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global robot;
+fprintf(robot.shutdown());
 try
-    fclose(handles.serialPort);
+    %fclose(handles.serialPort);
+    robot = PlateLoaderSim(0);
 catch
     %do nothing. already closed.
+    fprintf('something went wrong');
 end
 
 % --- Executes on selection change in popupmenu1.
@@ -377,7 +381,7 @@ end
 set(handles.LogBox,'string',{''});
 temp = strsplit(listOfCommands,',');
 for (i = 1:1:max(length(temp)))
-    pause(1);
+    
     randomNum = -1 + rand()*2;
     sound(randomNum);
     sound(-1*randomNum);
@@ -388,7 +392,7 @@ for (i = 1:1:max(length(temp)))
     end
     catch e
         listOfCommands = 'Q';
-        robot.reset();
+        %robot.reset();
         set(handles.ExQueueBox,'string','                      ');
         
     end
@@ -421,6 +425,7 @@ for (i = 1:1:max(length(temp)))
 %     end
     set(handles.LogBox,'string', new_list);
     updateSim(handles);
+    pause(1);
 end
 set(handles.ExQueueBox,'string','                      ');
 listOfCommands = 'Q';
