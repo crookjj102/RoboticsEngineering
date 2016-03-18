@@ -22,7 +22,7 @@ function varargout = PlateLoaderGUI(varargin)
 
 % Edit the above text to modify the response to help PlateLoaderGUI
 
-% Last Modified by GUIDE v2.5 17-Mar-2016 20:48:36
+% Last Modified by GUIDE v2.5 18-Mar-2016 01:13:49
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -51,12 +51,22 @@ function PlateLoaderGUI_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to PlateLoaderGUI (see VARARGIN)
-
 % Choose default command line output for PlateLoaderGUI
 handles.output = hObject;
-handles.robot = 0;
-handles.listOfCommands = {};
-handles.currentIndex = 1; 
+global robot;
+global listOfCommands;
+listOfCommands = 'I'; % need to reset at the beginning.
+global calibrationData;
+calibrationData= [   
+    00, 30, 30, 30, 30;
+    30, 00, 30, 30, 30;
+    30, 30, 00, 30, 30;
+    30, 30, 30, 00, 30;
+    30, 30, 30, 30, 00];
+                            
+robot = PlateLoaderSim('26');
+set(handles.CalibrationTable, 'Data', calibrationData, 'ColumnEditable', true);
+%handles.user.currentIndex = 1; 
 % Update handles structure
 guidata(hObject, handles);
 
@@ -81,11 +91,12 @@ function ConnectionButton_Callback(hObject, eventdata, handles)
 % hObject    handle to ConnectionButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global robot;
 clc
 contents=get(handles.popupmenu1, 'Value');
 
 try
-    handles.robot = PlateLoader(contents);
+    robot = PlateLoader(contents);
 catch
     fprintf('That COM Port does not exist.\n');
 end
@@ -206,6 +217,7 @@ function EnqueueButton_Callback(hObject, eventdata, handles)
 % hObject    handle to EnqueueButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global listOfCommands
 switch get(get(handles.ButtonGroup, 'SelectedObject'),'Tag')
     case 'Reset'
         instruction = 'I';
@@ -229,9 +241,10 @@ switch get(get(handles.ButtonGroup, 'SelectedObject'),'Tag')
         %do nothing; this should never happen.
         
 end
-fprintf(instruction);
-handles.listOfCommands{handles.currentIndex} = instruction;
-handles.currentIndex= handles.currentIndex+1;
+listOfCommands = strcat(listOfCommands, ',',instruction);
+%fprintf(handles.user.listOfCommands);
+% fprintf('\n');
+%handles.user.currentIndex= handles.user.currentIndex+1;
 
 
 % --- Executes on button press in ExecuteButton.
@@ -239,8 +252,12 @@ function ExecuteButton_Callback(hObject, eventdata, handles)
 % hObject    handle to ExecuteButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-for idk = 1:size(handles.listOfCommands)
-    fprintf
+global listOfCommands;
+fprintf('\n');
+temp = strsplit(listOfCommands,',');
+for (i = 1:1:max(length(temp)))
+    fprintf(temp{i});
+end
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
 % --- Otherwise, executes on mouse press in 5 pixel border or over popupmenu5.
@@ -273,19 +290,19 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on selection change in ErrorLogBox.
-function ErrorLogBox_Callback(hObject, eventdata, handles)
-% hObject    handle to ErrorLogBox (see GCBO)
+% --- Executes on selection change in LogBox.
+function LogBox_Callback(hObject, eventdata, handles)
+% hObject    handle to LogBox (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns ErrorLogBox contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from ErrorLogBox
+% Hints: contents = cellstr(get(hObject,'String')) returns LogBox contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from LogBox
 
 
 % --- Executes during object creation, after setting all properties.
-function ErrorLogBox_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to ErrorLogBox (see GCBO)
+function LogBox_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to LogBox (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -301,8 +318,9 @@ function aboutRobot_Callback(hObject, eventdata, handles)
 % hObject    handle to aboutRobot (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% version = handles.robot.getVersion();
-version = 'Test String';
+global robot;
+version = robot.getVersion();
+%version = 'Test String';
 VersionGUI(version);
 
 
@@ -311,3 +329,19 @@ function ButtonGroup_SelectionChangedFcn(hObject, eventdata, handles)
 % hObject    handle to the selected object in ButtonGroup 
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function CalibrationTable_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to CalibrationTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in CalibrateButton.
+function CalibrateButton_Callback(hObject, eventdata, handles)
+% hObject    handle to CalibrateButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global robot;
+robot.setTimeValues(handles.CalibrationTable
