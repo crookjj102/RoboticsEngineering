@@ -239,9 +239,8 @@ function ExecuteButton_Callback(hObject, eventdata, handles)
 % hObject    handle to ExecuteButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-for (idk = 1:length(handles.listOfCommands))
-    fprintf(handles.listOfCommands{idk});
-end
+for idk = 1:size(handles.listOfCommands)
+    fprintf
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
 % --- Otherwise, executes on mouse press in 5 pixel border or over popupmenu5.

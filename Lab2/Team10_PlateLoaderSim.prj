@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="2608202117" file="C:\Users\doughezj\Documents\GitHub\RoboticsEngineering\Lab2\Team10_PlateLoaderSim.prj" location="C:\Users\doughezj\Documents\GitHub\RoboticsEngineering\Lab2" name="Team10_PlateLoaderSim" preferred-package-location="C:\Users\doughezj\Documents\GitHub\RoboticsEngineering\Lab2\Team10_PlateLoaderSim\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
+  <configuration build-checksum="2608202117" file="D:\Users\crookjj\Documents\MATLAB\ME435\Lab2\Team10_PlateLoaderSim.prj" location="D:\Users\crookjj\Documents\MATLAB\ME435\Lab2" name="Team10_PlateLoaderSim" preferred-package-location="C:\Users\doughezj\Documents\GitHub\RoboticsEngineering\Lab2\Team10_PlateLoaderSim\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>Team10_PlateLoaderSim</param.appname>
     <param.icon />
     <param.icons />
@@ -15,14 +15,16 @@
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
+    <param.target.install.notes />
     <param.intermediate>${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\Team10_PlateLoaderSim\for_redistribution_files_only</param.files.only>
     <param.output>${PROJECT_ROOT}\Team10_PlateLoaderSim\for_redistribution</param.output>
+    <param.enable.clean.build>false</param.enable.clean.build>
     <param.user.defined.mcr.options />
     <param.embed.ctf>true</param.embed.ctf>
-    <param.server.ctf>${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing\.ctf</param.server.ctf>
-    <param.server.readme>${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing\readme.txt</param.server.readme>
     <param.target.type>subtarget.standalone</param.target.type>
     <param.support.packages />
+    <param.required.mcr.products />
     <param.web.mcr>true</param.web.mcr>
     <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
@@ -45,15 +47,16 @@
       <param.installpath.string />
       <param.installpath.combo />
       <param.logo />
-      <param.install.notes />
+      <param.target.install.notes />
       <param.intermediate />
+      <param.files.only />
       <param.output />
+      <param.enable.clean.build />
       <param.user.defined.mcr.options />
       <param.embed.ctf />
-      <param.server.ctf />
-      <param.server.readme />
       <param.target.type />
       <param.support.packages />
+      <param.required.mcr.products />
       <param.web.mcr />
       <param.package.mcr />
       <param.no.mcr />
@@ -86,14 +89,15 @@
       <file>${PROJECT_ROOT}\robot_background.jpg</file>
       <file>${PROJECT_ROOT}\simpleRobotOpen.m</file>
     </fileset.package>
+    <fileset.depfun />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing" name="Team10_PlateLoaderSim.exe" optional="false">C:\Users\doughezj\Documents\GitHub\RoboticsEngineering\Lab2\Team10_PlateLoaderSim\for_testing\Team10_PlateLoaderSim.exe</file>
-      <file location="${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing" name="splash.png" optional="false">C:\Users\doughezj\Documents\GitHub\RoboticsEngineering\Lab2\Team10_PlateLoaderSim\for_testing\splash.png</file>
-      <file location="${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing" name="readme.txt" optional="true">C:\Users\doughezj\Documents\GitHub\RoboticsEngineering\Lab2\Team10_PlateLoaderSim\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing" name="readme.txt" optional="true">D:\Users\crookjj\Documents\MATLAB\ME435\Lab2\Team10_PlateLoaderSim\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing" name="splash.png" optional="false">D:\Users\crookjj\Documents\MATLAB\ME435\Lab2\Team10_PlateLoaderSim\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\Team10_PlateLoaderSim\for_testing" name="Team10_PlateLoaderSim.exe" optional="false">D:\Users\crookjj\Documents\MATLAB\ME435\Lab2\Team10_PlateLoaderSim\for_testing\Team10_PlateLoaderSim.exe</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2014a</root>
+      <root>D:\Program Files\MATLAB\R2015b</root>
       <toolboxes>
         <toolbox name="fixedpoint" />
         <toolbox name="embeddedcoder" />
@@ -124,7 +128,7 @@
       <vista>false</vista>
       <linux>false</linux>
       <solaris>false</solaris>
-      <osver>6.1</osver>
+      <osver>6.2</osver>
       <os32>false</os32>
       <os64>true</os64>
       <arch>win64</arch>
