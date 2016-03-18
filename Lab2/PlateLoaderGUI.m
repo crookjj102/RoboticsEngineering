@@ -55,7 +55,7 @@ function PlateLoaderGUI_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 global robot;
 global listOfCommands;
-listOfCommands = 'R';
+listOfCommands = 'I';
 robot = PlateLoaderSim('26');
 %handles.user.currentIndex = 1; 
 % Update handles structure
@@ -209,30 +209,47 @@ function EnqueueButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global listOfCommands
+log = '';
 switch get(get(handles.ButtonGroup, 'SelectedObject'),'Tag')
     case 'Reset'
+        log = 'Reset';
         instruction = 'I';
     case 'XMove'
         pos = get(handles.popupmenu5, 'Value');
         instruction = strcat('X ', num2str(pos));
+        log = strcat('Move To X = %i', num2str(pos));
     case 'ExtendButton'
         instruction = 'E';
+        log = 'Extend';
     case 'RetractButton'
         instruction = 'R';
+        log = 'Retract';
     case 'CloseButton'
         instruction = 'C';
+        log = 'Close Gripper';
     case 'OpenButton'
         instruction = 'O';
+        log = 'Open Gripper';
     case 'MovePlate'
         Spos = get(handles.MoveStart, 'Value');
         Epos = get(handles.MoveEnd, 'Value');
         instruction = strcat('M', num2str(Spos));
         instruction = strcat(instruction, num2str(Epos));
+        log = strcat('Move Plate From ',num2str(Spos),' to ', num2str(Epos));
     otherwise
         %do nothing; this should never happen.
         
 end
 listOfCommands = strcat(listOfCommands, ',',instruction);
+    prev_list = get(handles.ExQueueBox,'string');
+    if(isempty(prev_list))
+        new_list = {log};
+    else
+    new_list = [prev_list; log];
+    end
+    set(handles.ExQueueBox,'string', new_list);
+    set(handles.ErrorLogBox,'string',{''});
+    
 %fprintf(handles.user.listOfCommands);
 % fprintf('\n');
 %handles.user.currentIndex= handles.user.currentIndex+1;
@@ -244,11 +261,40 @@ function ExecuteButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global listOfCommands;
-fprintf('\n');
+global robot;
+set(handles.ErrorLogBox,'string',{''});
 temp = strsplit(listOfCommands,',');
 for (i = 1:1:max(length(temp)))
-    fprintf(temp{i});
+    log = '';
+    firstLetter = temp{i}(1);
+    if(strcmp('I',firstLetter))
+        log = robot.reset();
+    elseif(strcmp('X',firstLetter))
+        pos = str2num(temp{i}(2));
+        log = robot.x(pos);
+    elseif(strcmp('E',firstLetter))
+        log = robot.extend();
+    elseif(strcmp('R',firstLetter))
+        log = robot.retract();
+    elseif(strcmp('C',firstLetter))
+        log = robot.close();
+    elseif(strcmp('O',firstLetter))
+        log = robot.open();
+    elseif(strcmp('M',firstLetter))
+        pos1 = str2num(temp{i}(2));
+        pos2 = str2num(temp{i}(3));
+        log = robot.movePlate(pos1, pos2);
+    end
+    prev_list = get(handles.ErrorLogBox,'string');
+    if(isempty(prev_list))
+        new_list = {log};
+    else
+    new_list = [prev_list; log];
+    end
+    set(handles.ErrorLogBox,'string', new_list);
 end
+set(handles.ExQueueBox,'string',{''});
+listOfCommands = '';
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
 % --- Otherwise, executes on mouse press in 5 pixel border or over popupmenu5.
