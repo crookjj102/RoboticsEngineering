@@ -156,6 +156,9 @@ classdef PlateLoaderSim < hgsetget
             response = 'Disconnected';
             % Could delete obj but no real need
         end
+        function response = getVersion(obj)
+            response = 'Simulation Plate Loader Version ?';
+        end
         function disp(obj)
             % Overrides the display when seeing robot status
             % Note: if you need to see the field names use:

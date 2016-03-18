@@ -51,12 +51,13 @@ function PlateLoaderGUI_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to PlateLoaderGUI (see VARARGIN)
-
 % Choose default command line output for PlateLoaderGUI
 handles.output = hObject;
-handles.robot = 0;
-handles.listOfCommands = {};
-handles.currentIndex = 1; 
+global robot;
+global listOfCommands;
+listOfCommands = 'R';
+robot = PlateLoaderSim('26');
+%handles.user.currentIndex = 1; 
 % Update handles structure
 guidata(hObject, handles);
 
@@ -81,11 +82,12 @@ function ConnectionButton_Callback(hObject, eventdata, handles)
 % hObject    handle to ConnectionButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global robot;
 clc
 contents=get(handles.popupmenu1, 'Value');
 
 try
-    handles.robot = PlateLoader(contents);
+    robot = PlateLoader(contents);
 catch
     fprintf('That COM Port does not exist.\n');
 end
@@ -206,6 +208,7 @@ function EnqueueButton_Callback(hObject, eventdata, handles)
 % hObject    handle to EnqueueButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global listOfCommands
 switch get(get(handles.ButtonGroup, 'SelectedObject'),'Tag')
     case 'Reset'
         instruction = 'I';
@@ -229,9 +232,10 @@ switch get(get(handles.ButtonGroup, 'SelectedObject'),'Tag')
         %do nothing; this should never happen.
         
 end
-fprintf(instruction);
-handles.listOfCommands{handles.currentIndex} = instruction;
-handles.currentIndex= handles.currentIndex+1;
+listOfCommands = strcat(listOfCommands, ',',instruction);
+%fprintf(handles.user.listOfCommands);
+% fprintf('\n');
+%handles.user.currentIndex= handles.user.currentIndex+1;
 
 
 % --- Executes on button press in ExecuteButton.
@@ -239,8 +243,11 @@ function ExecuteButton_Callback(hObject, eventdata, handles)
 % hObject    handle to ExecuteButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-for (idk = 1:length(handles.listOfCommands))
-    fprintf(handles.listOfCommands{idk});
+global listOfCommands;
+fprintf('\n');
+temp = strsplit(listOfCommands,',');
+for (i = 1:1:max(length(temp)))
+    fprintf(temp{i});
 end
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
@@ -302,8 +309,9 @@ function aboutRobot_Callback(hObject, eventdata, handles)
 % hObject    handle to aboutRobot (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% version = handles.robot.getVersion();
-version = 'Test String';
+global robot;
+version = robot.getVersion();
+%version = 'Test String';
 VersionGUI(version);
 
 
