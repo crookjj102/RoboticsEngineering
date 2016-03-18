@@ -142,8 +142,6 @@ classdef PlateLoaderSim < hgsetget
                 response = strcat(response,', GRIPPER OPEN');
             end
         end
-        
-        
         function [xPos,zAxis,grip,plate] = getProperties(obj)
             % Returns the status properties of the robot (for GUI display)
             xPos = obj.xAxisPosition;
