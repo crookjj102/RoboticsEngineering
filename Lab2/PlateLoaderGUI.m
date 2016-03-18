@@ -55,9 +55,7 @@ function PlateLoaderGUI_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 global robot;
 global listOfCommands;
-<<<<<<< HEAD
-listOfCommands = 'I';
-=======
+
 listOfCommands = 'I'; % need to reset at the beginning.
 global calibrationData;
 calibrationData= [   
@@ -67,7 +65,6 @@ calibrationData= [
     30, 30, 30, 00, 30;
     30, 30, 30, 30, 00];
                             
->>>>>>> dc940fa43b5ab82aa3c2e31772d0cb306a8e5bad
 robot = PlateLoaderSim('26');
 set(handles.CalibrationTable, 'Data', calibrationData, 'ColumnEditable', true);
 %handles.user.currentIndex = 1; 
@@ -261,7 +258,7 @@ listOfCommands = strcat(listOfCommands, ',',instruction);
     new_list = [prev_list; log];
     end
     set(handles.ExQueueBox,'string', new_list);
-    set(handles.ErrorLogBox,'string',{''});
+    set(handles.LogBox,'string',{''});
     
 %fprintf(handles.user.listOfCommands);
 % fprintf('\n');
@@ -275,7 +272,7 @@ function ExecuteButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global listOfCommands;
 global robot;
-set(handles.ErrorLogBox,'string',{''});
+set(handles.LogBox,'string',{''});
 temp = strsplit(listOfCommands,',');
 for (i = 1:1:max(length(temp)))
     log = '';
@@ -298,13 +295,13 @@ for (i = 1:1:max(length(temp)))
         pos2 = str2num(temp{i}(3));
         log = robot.movePlate(pos1, pos2);
     end
-    prev_list = get(handles.ErrorLogBox,'string');
+    prev_list = get(handles.LogBox,'string');
     if(isempty(prev_list))
         new_list = {log};
     else
     new_list = [prev_list; log];
     end
-    set(handles.ErrorLogBox,'string', new_list);
+    set(handles.LogBox,'string', new_list);
 end
 set(handles.ExQueueBox,'string',{''});
 listOfCommands = '';
