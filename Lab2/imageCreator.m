@@ -1,12 +1,10 @@
 function [] = imageCreator( backgroundAxes, extendAxes, gripperAxes, plateLoaderObj, imageScale)
 %recieves axes and the object of plateloader class
 %then updates the axes to have the proper images displayed
-black_block = imread('black_block.jpg','jpg');
 extended_bars = imread('extended_bars.jpg','jpg');
 gripper_closed_no_plate = imread('gripper_closed_no_plate.jpg','jpg');
 gripper_open_no_plate = imread('gripper_open_no_plate.jpg','jpg');
 gripper_with_plate = imread('gripper_with_plate.jpg','jpg');
-plate_only = imread('plate_only.jpg','jpg');
 robot_background = imread('robot_background','jpg');
 
 %setup background stuff

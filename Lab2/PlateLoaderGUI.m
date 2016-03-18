@@ -22,7 +22,7 @@ function varargout = PlateLoaderGUI(varargin)
 
 % Edit the above text to modify the response to help PlateLoaderGUI
 
-% Last Modified by GUIDE v2.5 18-Mar-2016 01:13:49
+% Last Modified by GUIDE v2.5 18-Mar-2016 12:02:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -58,16 +58,18 @@ global listOfCommands;
 
 listOfCommands = 'I'; % need to reset at the beginning.
 global calibrationData;
-calibrationData= [   
-    00, 30, 30, 30, 30;
-    30, 00, 30, 30, 30;
-    30, 30, 00, 30, 30;
-    30, 30, 30, 00, 30;
-    30, 30, 30, 30, 00];
+calibrationData = [
+            0 60 20 30 0
+            0 0 30 30 0
+            0 30 0 30 0
+            0 30 30 0 0
+            0 30 20 60 0];
                             
 robot = PlateLoaderSim('26');
 set(handles.CalibrationTable, 'Data', calibrationData, 'ColumnEditable', true);
-%handles.user.currentIndex = 1; 
+
+imageCreator(handles.axes_background, handles.axes_extend, handles.axes_gripper, robot, 1.1);
+moveToPos(handles.axes_gripper, 5, 0, false);
 % Update handles structure
 guidata(hObject, handles);
 
@@ -85,6 +87,66 @@ function varargout = PlateLoaderGUI_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
+
+
+function updateSim(handles)
+    global robot;
+    [xPos,zAxis,grip,plate] = robot.getProperties();
+    imageCreator(handles.axes_background, handles.axes_extend, handles.axes_gripper, robot, 1.1);
+    moveToPos(handles.axes_extend, xPos, 0, true);
+    if(zAxis)
+        moveToPos(handles.axes_gripper, xPos, 1, false);
+    else
+        moveToPos(handles.axes_gripper, xPos, 0, false);
+    end
+    
+
+function moveToPos(axes, pos_x, pos_y, isExtension)
+    x=0;
+    y=0;
+    if(~isExtension)
+    if(pos_y == 0)
+        y = 240;
+    else
+        y = 100;
+    end
+    switch(pos_x)
+        case 1
+            x = 40;
+        case 2
+            x = 135;
+        case 3
+            x = 230;
+        case 4
+            x = 325;
+        case 5
+            x = 420;
+    end
+    else
+        y = 150;
+    switch(pos_x)
+        case 1
+            x = 55;
+        case 2
+            x = 150;
+        case 3
+            x = 245;
+        case 4
+            x = 340;
+        case 5
+            x = 435;
+    end
+    end
+    sound(y/300);
+    sound(x/500);
+    moveAxes(axes, x, y);
+
+function moveAxes(axes, x, y)
+    curPos = get(axes,'Position');
+    size_1 = curPos(3);
+    size_2 = curPos(4);
+    set(axes,'Position',[x y size_1 size_2]);
+
 
 
 % --- Executes on button press in ConnectionButton.
@@ -222,30 +284,67 @@ global listOfCommands
 log = '';
 switch get(get(handles.ButtonGroup, 'SelectedObject'),'Tag')
     case 'Reset'
-        log = 'Reset';
+        log = 'Reset                 ';
         instruction = 'I';
     case 'XMove'
         pos = get(handles.popupmenu5, 'Value');
         instruction = strcat('X ', num2str(pos));
-        log = strcat('Move To X = %i', num2str(pos));
+        log = strcat('Move To X = ', num2str(pos),'         _');
     case 'ExtendButton'
         instruction = 'E';
-        log = 'Extend';
+        log = 'Extend                ';
     case 'RetractButton'
         instruction = 'R';
-        log = 'Retract';
+        log = 'Retract               ';
     case 'CloseButton'
         instruction = 'C';
-        log = 'Close Gripper';
+        log = 'Close Gripper         ';
     case 'OpenButton'
         instruction = 'O';
-        log = 'Open Gripper';
+        log = 'Open Gripper          ';
     case 'MovePlate'
         Spos = get(handles.MoveStart, 'Value');
         Epos = get(handles.MoveEnd, 'Value');
         instruction = strcat('M', num2str(Spos));
         instruction = strcat(instruction, num2str(Epos));
-        log = strcat('Move Plate From ',num2str(Spos),' to ', num2str(Epos));
+        log = strcat('Move Plate From ',num2str(Spos),' to ', num2str(Epos), '__');
+    case 'radiobutton_shuffle'
+        log = 'Shuffle               ';
+        instruction = 'O';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'X2';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'E';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'C';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'R';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'X1';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'E';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'O';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'R';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'X4';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'E';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'C';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'R';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'X2';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'E';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'O';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'R';
+        listOfCommands = strcat(listOfCommands, ',',instruction);
+        instruction = 'I';
     otherwise
         %do nothing; this should never happen.
         
@@ -258,7 +357,7 @@ listOfCommands = strcat(listOfCommands, ',',instruction);
     new_list = [prev_list; log];
     end
     set(handles.ExQueueBox,'string', new_list);
-    set(handles.LogBox,'string',{''});
+    set(handles.LogBox,'string','                      ');
     
 %fprintf(handles.user.listOfCommands);
 % fprintf('\n');
@@ -272,9 +371,27 @@ function ExecuteButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global listOfCommands;
 global robot;
+if(length(listOfCommands) == 0)
+    return;
+end
 set(handles.LogBox,'string',{''});
 temp = strsplit(listOfCommands,',');
 for (i = 1:1:max(length(temp)))
+    pause(1);
+    randomNum = -1 + rand()*2;
+    sound(randomNum);
+    sound(-1*randomNum);
+    try
+    if(temp{i} == '')
+        fprintf('temp is empty');
+        continue;
+    end
+    catch e
+        listOfCommands = 'Q';
+        robot.reset();
+        set(handles.ExQueueBox,'string','                      ');
+        
+    end
     log = '';
     firstLetter = temp{i}(1);
     if(strcmp('I',firstLetter))
@@ -296,15 +413,17 @@ for (i = 1:1:max(length(temp)))
         log = robot.movePlate(pos1, pos2);
     end
     prev_list = get(handles.LogBox,'string');
-    if(isempty(prev_list))
-        new_list = {log};
-    else
+    
+%     if(isempty(prev_list))
+%         new_list = {log};
+%     else
     new_list = [prev_list; log];
-    end
+%     end
     set(handles.LogBox,'string', new_list);
+    updateSim(handles);
 end
-set(handles.ExQueueBox,'string',{''});
-listOfCommands = '';
+set(handles.ExQueueBox,'string','                      ');
+listOfCommands = 'Q';
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
 % --- Otherwise, executes on mouse press in 5 pixel border or over popupmenu5.
@@ -368,7 +487,8 @@ function aboutRobot_Callback(hObject, eventdata, handles)
 global robot;
 version = robot.getVersion();
 %version = 'Test String';
-VersionGUI(version);
+%VersionGUI(version);
+uiwait(helpdlg(version));
 
 
 % --- Executes when selected object is changed in ButtonGroup.
@@ -392,3 +512,39 @@ function CalibrateButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global robot;
 robot.setTimeValues(get(handles.CalibrationTable,'Data')); 
+
+
+% --- Executes on button press in Bell.
+function Bell_Callback(hObject, eventdata, handles)
+% hObject    handle to Bell (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    load gong.mat;
+    nBits = 24;
+    sound(-10*y, 5*Fs, nBits);
+
+
+
+% --- Executes on button press in Whistle.
+function Whistle_Callback(hObject, eventdata, handles)
+% hObject    handle to Whistle (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    nBits = 8;
+    load handel.mat;
+    sound(y, 3*Fs, nBits);
+
+
+% --- Executes on button press in ResetCalib.
+function ResetCalib_Callback(hObject, eventdata, handles)
+% hObject    handle to ResetCalib (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global robot;
+robot.resetDefaultTimes();
+calibrationData = [
+            0 60 20 30 0
+            0 0 30 30 0
+            0 30 0 30 0
+            0 30 30 0 0
+            0 30 20 60 0];
