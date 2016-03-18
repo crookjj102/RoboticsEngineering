@@ -553,3 +553,10 @@ calibrationData = [
             0 30 0 30 0
             0 30 30 0 0
             0 30 20 60 0];
+% --- Executes on button press in StatusButton.
+function StatusButton_Callback(hObject, eventdata, handles)
+% hObject    handle to StatusButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global robot;
+set(handles.StatusText, 'String',robot.getStatus);
