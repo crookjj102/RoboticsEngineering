@@ -1,7 +1,7 @@
 classdef PlateLoader < hgsetget
     %PLATELOADER Controls the Beckman Coulter Plate Loader Robot
     %   Performs the basic actions to control the plate loader
-    
+
     % TODO: If anybody wants to help my comments in this file certainly be
     % better. :)  Thanks.  Just fix up the Google Doc.
     
@@ -27,13 +27,13 @@ classdef PlateLoader < hgsetget
             % Close any open serial connections
             open_ports=instrfind('Type','serial','Status','open');
             if ~isempty(open_ports)
-                fclose(open_ports);
+                 fclose(open_ports);
             end
             portStr = sprintf('COM%d',portNumber);
             obj.serialRobot = serial(portStr,'BaudRate',19200,'Terminator',10,'Timeout',1);
             response = robotOpenSeq(obj);
             % Had to print the response since a construct cannot return mulitple items
-            fprintf(response);
+            fprintf(response);  
             obj.xAxisPosition = 3;
             obj.isZAxisExtended = false;
             obj.isGripperClosed = true;
@@ -108,7 +108,7 @@ classdef PlateLoader < hgsetget
             end
             moveCommand = sprintf('MOVE %d %d',startPos,endPos);
             fprintf(obj.serialRobot,moveCommand);
-            
+
             response = getResponse(obj);
             if( strcmp(response(1:5),'ERROR'))
                 obj.xAxisPosition = startPos;
@@ -151,37 +151,43 @@ classdef PlateLoader < hgsetget
             fprintf(obj.serialRobot,'LOADER_STATUS');
             response = getResponse(obj);
             splitString = strsplit(response,' ');
-            if(~strcmp('READY',splitString(1)))
+            if(~strcmp('READY',splitString(i)))
                 return;
             end
             for i = 1:1:max(size(splitString))
-                if(strcmp('POSITION',splitString(i)))
-                    temp = splitString(i+1);
-                    obj.xAxisPosition = str2num(temp);
-                elseif(strcmp('Z-AXIS', splitString(i)))
-                    temp = splitString(i+1);
-                    if(strcmp('EXTENDED', temp))
-                        obj.isZAxisExtended = true;
-                    else
-                        obj.isZAxisExtended = false;
-                    end
-                elseif(strcmp('GRIPPER', splitString(i)))
-                    temp = splitString(i+1);
-                    if(strcmp('CLOSED', temp))
-                        obj.isGripperClosed = true;
-                    else
-                        obj.isGripperClosed = false;
-                    end
-                elseif(strcmp('PLATE', splitString(i)))
-                    obj.isPlatePresent = true;
-                elseif(strcmp('NOPLATE', splitString(i)))
-                    obj.isPlatePresent = false;
-                end
+               if(strcmp('POSITION',splitString(i)))
+                   temp = splitString(i+1);
+                   obj.xAxisPosition = str2num(temp);
+               elseif(strcmp('Z-AXIS', splitString(i)))
+                   temp = splitString(i+1);
+                   if(strcmp('EXTENDED', temp)
+                       obj.isZAxisExtended = true;
+                   else
+                       obj.isZAxisExtended = false;
+                   end
+               elseif(strcmp('GRIPPER', splitString(i)))
+                   temp = splitString(i+1);
+                   if(strcmp('CLOSED', temp)
+                       obj.isGripperClosed = true;
+                   else
+                       obj.isGripp = false;
+                   end
+               elseif(strcmp('PLATE', splitString(i)))
+                   
+               elseif(strcmp('NOPLATE', splitString(i)))
+                   
+               end
             end
+   
+                
+                
+            end
+            
+            
+            % TODO: Make the values update if different
+            %  Can someone make the call to LOADED_STATUS also update
+            %  properties, just in case somehow it gets off
         end
-        
-        %  Can someone make the call to LOADED_STATUS also update
-        %  properties, just in case somehow it gets off
         
         function response = getVersion(obj)
             fprintf(obj.serialRobot, 'VERSION');
@@ -189,7 +195,7 @@ classdef PlateLoader < hgsetget
         end
         
         % Other to todo's if someone wants to.  Implement the additional
-        %  weird commands: STOP_CYLINDER, VERSION,
+        %  weird commands: STOP_CYLINDER, VERSION, 
         %  X-AXIS_STATUS, Z-AXIS_STATUS, GRIPPER_STATUS
         
         function [xPos,zAxis,grip,plate] = getProperties(obj)
