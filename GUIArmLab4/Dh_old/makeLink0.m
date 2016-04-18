@@ -19,11 +19,11 @@ link0Verts = [-1.75	-2.15	-2.5;
     0.75	0.375	-0.75;
     0.75	-0.375	-0.75];
 link0Faces = [1 2 3 4;
-      5 6 10 9;
-    6 7 11 10;
-    7 8 12 11;
-    8 5 9 12;
-    9 10 11 12];
+     5 6 10 9;
+     6 7 11 10;
+     7 8 12 11;
+     8 5 9 12;
+     9 10 11 12];
 p = patch('Parent', parentAxes, 'Faces',link0Faces,'Vertices',link0Verts,'FaceColor',faceColor);
 
 end
