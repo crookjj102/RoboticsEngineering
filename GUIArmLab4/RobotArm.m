@@ -55,6 +55,7 @@ function RobotArm_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for RobotArm
 handles.output = hObject;
 handles.user.jointAngles = [0 90 0 -90 90];
+handles.user.connected = false;
 
 addImageToAxes('wildThumper.png', handles.axes_thumperImg,400);
 
@@ -109,6 +110,13 @@ function slider_gripper_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+if(handles.user.connected)
+    val = get(hObject,'Value');
+    commandString = sprintf('GRIPPER %d',val);
+    fprintf(handles.user.s, commandString);
+    fprintf(commandString);
+    fprintf('\n');
+end
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -257,9 +265,18 @@ handles.user.jointAngles(3) = round(get(handles.slider_joint3, 'Value'));
 handles.user.jointAngles(4) = round(get(handles.slider_joint4, 'Value'));
 handles.user.jointAngles(5) = round(get(handles.slider_joint5, 'Value'));
 
+guidata(hObject, handles);
 jointAnglesStr = sprintf('%d  %d  %d  %d  %d', handles.user.jointAngles);
 set(handles.text_current_joint_angles, 'String', jointAnglesStr);
 updateArm(hObject, handles);
+if(handles.user.connected)
+    jointAnglesStr2 = sprintf(' %d %d %d %d %d',handles.user.jointAngles);
+    commandString = strcat('POSITION', jointAnglesStr2);
+    fprintf(handles.user.s, commandString);
+    fprintf(commandString);
+    fprintf('\n');
+end
+guidata(hObject, handles);
 end
 
 
@@ -297,9 +314,12 @@ if ~isempty(open_ports)
     fclose(open_ports);
 end
 
-fprintf('TODO: Open a serial connection to hte robot arm .\n');
+comNum = get(handles.editcomPort, 'String');
+com = strcat('COM', comNum);
+handles.user.s = serial(com,'BaudRate',9600);
+fopen(handles.user.s)
 
-
+handles.user.connected = true;
 guidata(hObject, handles);
 end
 
@@ -313,6 +333,9 @@ open_ports = instrfind('Type', 'serial', 'Status','open');
 if ~isempty(open_ports)
     fclose(open_ports);
 end
+
+handles.user.connected = false;
+guidata(hObject, handles);
 end
 
 function updateArm(hObject, handles)

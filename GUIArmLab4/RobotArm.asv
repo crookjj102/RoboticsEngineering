@@ -22,7 +22,7 @@ function varargout = RobotArm(varargin)
 
 % Edit the above text to modify the response to help RobotArm
 
-% Last Modified by GUIDE v2.5 18-Apr-2016 14:28:56
+% Last Modified by GUIDE v2.5 18-Apr-2016 15:05:17
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -55,15 +55,34 @@ function RobotArm_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for RobotArm
 handles.output = hObject;
 handles.user.jointAngles = [0 90 0 -90 90];
-addImageToAxes('wildThumper.png', handles.axes_thumperImg,500);
+handles.user.connected = false;
 
-view(handles.axes_arm, [-50 -50 50]);
-axis(handles.axes_arm, [-13 10 -8 8 -3 14.5]);
-grid on
-xlabel('x')
-ylabel('y')
-zlabel('z')
+addImageToAxes('wildThumper.png', handles.axes_thumperImg,400);
 
+ view(handles.axes_arm, [-50 -50 50]);
+ set(handles.axes_arm,'Color','None');
+ axis(handles.axes_arm, [-13 10 -8 8 -3 14.5]);
+ set(handles.axes_arm,'Units','Pixels','Visible','Off');  
+makeLink0(handles.axes_arm, [.5 .5 .5]);  % Doesn't move. No handles needed.
+% Save handles to the patch objects.
+% Save references to the vertices of each patch, make points 4x1 not 3x1.
+handles.user.link1Patch = makeLink1(handles.axes_arm, [.9 .9 .9]);
+handles.user.link1Vertices = get(handles.user.link1Patch, 'Vertices')';
+handles.user.link1Vertices(4,:) = ones(1, size(handles.user.link1Vertices,2));
+handles.user.link2Patch = makeLink2(handles.axes_arm, [.9 .9 .9]);
+handles.user.link2Vertices = get(handles.user.link2Patch, 'Vertices')';
+handles.user.link2Vertices(4,:) = ones(1, size(handles.user.link2Vertices,2));
+handles.user.link3Patch = makeLink3(handles.axes_arm, [.9 .9 .9]);
+handles.user.link3Vertices = get(handles.user.link3Patch, 'Vertices')';
+handles.user.link3Vertices(4,:) = ones(1, size(handles.user.link3Vertices,2));
+handles.user.link4Patch = makeLink4(handles.axes_arm, [.9 .9 .9]);
+handles.user.link4Vertices = get(handles.user.link4Patch, 'Vertices')';
+handles.user.link4Vertices(4,:) = ones(1, size(handles.user.link4Vertices,2));
+handles.user.link5Patch = makeLink5(handles.axes_arm, [.95 .95 0]);
+handles.user.link5Vertices = get(handles.user.link5Patch, 'Vertices')';
+handles.user.link5Vertices(4,:) = ones(1, size(handles.user.link5Vertices,2));
+
+updateArm(hObject, handles);
 
 % Update handles structure
 guidata(hObject, handles);
@@ -241,6 +260,7 @@ handles.user.jointAngles(5) = round(get(handles.slider_joint5, 'Value'));
 
 jointAnglesStr = sprintf('%d  %d  %d  %d  %d', handles.user.jointAngles);
 set(handles.text_current_joint_angles, 'String', jointAnglesStr);
+updateArm(hObject, handles);
 end
 
 
@@ -278,9 +298,11 @@ if ~isempty(open_ports)
     fclose(open_ports);
 end
 
-fprintf('TODO: Open a serial connection to hte robot arm .\n');
+com = get(handles.editComPort
+s = serial(com,'BaudRate',19200,'Terminator',10,'Timeout',5);
+fopen(s)
 
-
+handles.user.connected = true;
 guidata(hObject, handles);
 end
 
