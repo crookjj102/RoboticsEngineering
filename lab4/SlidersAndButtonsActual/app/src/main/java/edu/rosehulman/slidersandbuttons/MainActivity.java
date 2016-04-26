@@ -61,12 +61,12 @@ public class MainActivity extends AccessoryActivity implements OnSeekBarChangeLi
 
     public void handlePosition1Click(View view) {
         Toast.makeText(this, "TODO: Implement button", Toast.LENGTH_SHORT).show();
-        sendCommand("POSITION 0 90 0 -90 90");
+        sendCommand("POSITION 40 30 10 -20 50");
     }
 
     public void handlePosition2Click(View view) {
         Toast.makeText(this, "TODO: Implement button", Toast.LENGTH_SHORT).show();
-        sendCommand("POSITION 0 90 0 -90 90");
+        sendCommand("POSITION -40 -30 -10 20 -50");
     }
 
     public void handleScript1Click(View view) {
