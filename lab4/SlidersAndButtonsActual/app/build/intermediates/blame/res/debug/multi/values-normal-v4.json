@@ -1,0 +1,171 @@
+[
+    {
+        "outputFile": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\build\\intermediates\\res\\merged\\debug\\values-normal-v4\\values-normal-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 61,
+                    "endOffset": 112
+                },
+                "from": {
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 4,
+                        "startOffset": 16,
+                        "endColumn": 68,
+                        "endOffset": 80
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 117,
+                    "endColumn": 50,
+                    "endOffset": 163
+                },
+                "from": {
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 85,
+                        "endColumn": 57,
+                        "endOffset": 138
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 168,
+                    "endLine": 11,
+                    "endColumn": 12,
+                    "endOffset": 568
+                },
+                "from": {
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 1510,
+                        "endLine": 39,
+                        "endColumn": 12,
+                        "endOffset": 1910
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 573,
+                    "endLine": 19,
+                    "endColumn": 12,
+                    "endOffset": 1003
+                },
+                "from": {
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 603,
+                        "endLine": 22,
+                        "endColumn": 12,
+                        "endOffset": 1033
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1008,
+                    "endLine": 26,
+                    "endColumn": 12,
+                    "endOffset": 1361
+                },
+                "from": {
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 144,
+                        "endLine": 10,
+                        "endColumn": 12,
+                        "endOffset": 497
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 1366,
+                    "endLine": 29,
+                    "endColumn": 12,
+                    "endOffset": 1461
+                },
+                "from": {
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 502,
+                        "endLine": 13,
+                        "endColumn": 12,
+                        "endOffset": 597
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 30,
+                    "startColumn": 4,
+                    "startOffset": 1466,
+                    "endLine": 38,
+                    "endColumn": 12,
+                    "endOffset": 1933
+                },
+                "from": {
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1038,
+                        "endLine": 31,
+                        "endColumn": 12,
+                        "endOffset": 1505
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 39,
+                    "startColumn": 4,
+                    "startOffset": 1938,
+                    "endLine": 46,
+                    "endColumn": 12,
+                    "endOffset": 2343
+                },
+                "from": {
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\RoboticsEngineering\\lab4\\SlidersAndButtonsActual\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 1915,
+                        "endLine": 47,
+                        "endColumn": 12,
+                        "endOffset": 2320
+                    }
+                }
+            }
+        ]
+    }
+]
