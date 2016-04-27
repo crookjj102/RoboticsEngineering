@@ -11,6 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ee0d11ae-53b9-48bc-8a5d-c51b175c675f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/edu/rosehulman/onegoodgpsreading/OneGoodGpsReadingActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/edu/rosehulman/onegoodgpsreading/OneGoodGpsReadingActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/edu/rosehulman/onegoodgpsreading/State.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/edu/rosehulman/onegoodgpsreading/State.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
@@ -18,12 +19,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_05558ab9ab8a59e20c0b8bfb0d8a731b4f424a1d.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_05558ab9ab8a59e20c0b8bfb0d8a731b4f424a1d.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/rosehulman/onegoodgpsreading/OneGoodGpsReadingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/rosehulman/onegoodgpsreading/OneGoodGpsReadingActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OneGood.iws" />
@@ -49,14 +48,49 @@
             <file leaf-file-name="OneGoodGpsReadingActivity.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/rosehulman/onegoodgpsreading/OneGoodGpsReadingActivity.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.5344645">
-                    <caret line="98" column="59" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
+                  <state vertical-scroll-proportion="0.39824945">
+                    <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
                     <folding>
                       <element signature="imports" expanded="true" />
-                      <element signature="e#4291#4326#0" expanded="true" />
-                      <element signature="e#4413#4456#0" expanded="true" />
-                      <element signature="e#4592#4635#0" expanded="true" />
-                      <element signature="e#5033#5081#0" expanded="true" />
+                      <element signature="method#onCreate#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="method#handleRedTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="method#handleBlueTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="method#handleMissionComplete#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="method#onCommandRecieved#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="method#onStart#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="method#onStop#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="method#onLocationChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="e#4907#4942#0" expanded="true" />
+                      <element signature="e#5262#5305#0" expanded="true" />
+                      <element signature="e#5441#5484#0" expanded="true" />
+                      <element signature="method#onSensorChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="e#6049#6097#0" expanded="true" />
+                      <element signature="method#redScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="e#6212#6492#0" expanded="true" />
+                      <element signature="e#6491#6492#0" expanded="true" />
+                      <element signature="e#6535#6819#0" expanded="true" />
+                      <element signature="e#6818#6819#0" expanded="true" />
+                      <element signature="e#6864#7199#0" expanded="true" />
+                      <element signature="e#7198#7199#0" expanded="true" />
+                      <element signature="method#blueScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="e#7323#7604#0" expanded="true" />
+                      <element signature="e#7603#7604#0" expanded="true" />
+                      <element signature="e#7647#7931#0" expanded="true" />
+                      <element signature="e#7930#7931#0" expanded="true" />
+                      <element signature="e#7977#8312#0" expanded="true" />
+                      <element signature="e#8311#8312#0" expanded="true" />
+                      <element signature="method#homeScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="e#8400#8684#0" expanded="true" />
+                      <element signature="e#8683#8684#0" expanded="true" />
+                      <element signature="e#8727#8940#0" expanded="true" />
+                      <element signature="e#8939#8940#0" expanded="true" />
+                      <element signature="e#8986#9316#0" expanded="true" />
+                      <element signature="e#9315#9316#0" expanded="true" />
+                      <element signature="method#getStateTime#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="e#9408#9850#0" expanded="true" />
+                      <element signature="e#9849#9850#0" expanded="true" />
+                      <element signature="method#stateTimeouts#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+                      <element signature="method#seekTargetAt#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
@@ -95,8 +129,8 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30706522">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.18478261">
+              <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -1999,10 +2033,45 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4291#4326#0" expanded="true" />
-            <element signature="e#4413#4456#0" expanded="true" />
-            <element signature="e#4592#4635#0" expanded="true" />
-            <element signature="e#5033#5081#0" expanded="true" />
+            <element signature="method#onCreate#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleRedTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleBlueTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleMissionComplete#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onCommandRecieved#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStart#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStop#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onLocationChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#4907#4942#0" expanded="true" />
+            <element signature="e#5262#5305#0" expanded="true" />
+            <element signature="e#5441#5484#0" expanded="true" />
+            <element signature="method#onSensorChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6049#6097#0" expanded="true" />
+            <element signature="method#redScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6212#6492#0" expanded="true" />
+            <element signature="e#6491#6492#0" expanded="true" />
+            <element signature="e#6535#6819#0" expanded="true" />
+            <element signature="e#6818#6819#0" expanded="true" />
+            <element signature="e#6864#7199#0" expanded="true" />
+            <element signature="e#7198#7199#0" expanded="true" />
+            <element signature="method#blueScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#7323#7604#0" expanded="true" />
+            <element signature="e#7603#7604#0" expanded="true" />
+            <element signature="e#7647#7931#0" expanded="true" />
+            <element signature="e#7930#7931#0" expanded="true" />
+            <element signature="e#7977#8312#0" expanded="true" />
+            <element signature="e#8311#8312#0" expanded="true" />
+            <element signature="method#homeScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#8400#8684#0" expanded="true" />
+            <element signature="e#8683#8684#0" expanded="true" />
+            <element signature="e#8727#8940#0" expanded="true" />
+            <element signature="e#8939#8940#0" expanded="true" />
+            <element signature="e#8986#9316#0" expanded="true" />
+            <element signature="e#9315#9316#0" expanded="true" />
+            <element signature="method#getStateTime#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#9408#9850#0" expanded="true" />
+            <element signature="e#9849#9850#0" expanded="true" />
+            <element signature="method#stateTimeouts#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#seekTargetAt#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2021,10 +2090,45 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4291#4326#0" expanded="true" />
-            <element signature="e#4413#4456#0" expanded="true" />
-            <element signature="e#4592#4635#0" expanded="true" />
-            <element signature="e#5033#5081#0" expanded="true" />
+            <element signature="method#onCreate#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleRedTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleBlueTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleMissionComplete#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onCommandRecieved#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStart#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStop#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onLocationChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#4907#4942#0" expanded="true" />
+            <element signature="e#5262#5305#0" expanded="true" />
+            <element signature="e#5441#5484#0" expanded="true" />
+            <element signature="method#onSensorChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6049#6097#0" expanded="true" />
+            <element signature="method#redScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6212#6492#0" expanded="true" />
+            <element signature="e#6491#6492#0" expanded="true" />
+            <element signature="e#6535#6819#0" expanded="true" />
+            <element signature="e#6818#6819#0" expanded="true" />
+            <element signature="e#6864#7199#0" expanded="true" />
+            <element signature="e#7198#7199#0" expanded="true" />
+            <element signature="method#blueScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#7323#7604#0" expanded="true" />
+            <element signature="e#7603#7604#0" expanded="true" />
+            <element signature="e#7647#7931#0" expanded="true" />
+            <element signature="e#7930#7931#0" expanded="true" />
+            <element signature="e#7977#8312#0" expanded="true" />
+            <element signature="e#8311#8312#0" expanded="true" />
+            <element signature="method#homeScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#8400#8684#0" expanded="true" />
+            <element signature="e#8683#8684#0" expanded="true" />
+            <element signature="e#8727#8940#0" expanded="true" />
+            <element signature="e#8939#8940#0" expanded="true" />
+            <element signature="e#8986#9316#0" expanded="true" />
+            <element signature="e#9315#9316#0" expanded="true" />
+            <element signature="method#getStateTime#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#9408#9850#0" expanded="true" />
+            <element signature="e#9849#9850#0" expanded="true" />
+            <element signature="method#stateTimeouts#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#seekTargetAt#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2035,10 +2139,45 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4291#4326#0" expanded="true" />
-            <element signature="e#4413#4456#0" expanded="true" />
-            <element signature="e#4592#4635#0" expanded="true" />
-            <element signature="e#5033#5081#0" expanded="true" />
+            <element signature="method#onCreate#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleRedTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleBlueTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleMissionComplete#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onCommandRecieved#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStart#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStop#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onLocationChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#4907#4942#0" expanded="true" />
+            <element signature="e#5262#5305#0" expanded="true" />
+            <element signature="e#5441#5484#0" expanded="true" />
+            <element signature="method#onSensorChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6049#6097#0" expanded="true" />
+            <element signature="method#redScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6212#6492#0" expanded="true" />
+            <element signature="e#6491#6492#0" expanded="true" />
+            <element signature="e#6535#6819#0" expanded="true" />
+            <element signature="e#6818#6819#0" expanded="true" />
+            <element signature="e#6864#7199#0" expanded="true" />
+            <element signature="e#7198#7199#0" expanded="true" />
+            <element signature="method#blueScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#7323#7604#0" expanded="true" />
+            <element signature="e#7603#7604#0" expanded="true" />
+            <element signature="e#7647#7931#0" expanded="true" />
+            <element signature="e#7930#7931#0" expanded="true" />
+            <element signature="e#7977#8312#0" expanded="true" />
+            <element signature="e#8311#8312#0" expanded="true" />
+            <element signature="method#homeScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#8400#8684#0" expanded="true" />
+            <element signature="e#8683#8684#0" expanded="true" />
+            <element signature="e#8727#8940#0" expanded="true" />
+            <element signature="e#8939#8940#0" expanded="true" />
+            <element signature="e#8986#9316#0" expanded="true" />
+            <element signature="e#9315#9316#0" expanded="true" />
+            <element signature="method#getStateTime#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#9408#9850#0" expanded="true" />
+            <element signature="e#9849#9850#0" expanded="true" />
+            <element signature="method#stateTimeouts#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#seekTargetAt#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2049,10 +2188,45 @@
           <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4291#4326#0" expanded="true" />
-            <element signature="e#4413#4456#0" expanded="true" />
-            <element signature="e#4592#4635#0" expanded="true" />
-            <element signature="e#5033#5081#0" expanded="true" />
+            <element signature="method#onCreate#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleRedTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleBlueTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleMissionComplete#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onCommandRecieved#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStart#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStop#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onLocationChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#4907#4942#0" expanded="true" />
+            <element signature="e#5262#5305#0" expanded="true" />
+            <element signature="e#5441#5484#0" expanded="true" />
+            <element signature="method#onSensorChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6049#6097#0" expanded="true" />
+            <element signature="method#redScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6212#6492#0" expanded="true" />
+            <element signature="e#6491#6492#0" expanded="true" />
+            <element signature="e#6535#6819#0" expanded="true" />
+            <element signature="e#6818#6819#0" expanded="true" />
+            <element signature="e#6864#7199#0" expanded="true" />
+            <element signature="e#7198#7199#0" expanded="true" />
+            <element signature="method#blueScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#7323#7604#0" expanded="true" />
+            <element signature="e#7603#7604#0" expanded="true" />
+            <element signature="e#7647#7931#0" expanded="true" />
+            <element signature="e#7930#7931#0" expanded="true" />
+            <element signature="e#7977#8312#0" expanded="true" />
+            <element signature="e#8311#8312#0" expanded="true" />
+            <element signature="method#homeScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#8400#8684#0" expanded="true" />
+            <element signature="e#8683#8684#0" expanded="true" />
+            <element signature="e#8727#8940#0" expanded="true" />
+            <element signature="e#8939#8940#0" expanded="true" />
+            <element signature="e#8986#9316#0" expanded="true" />
+            <element signature="e#9315#9316#0" expanded="true" />
+            <element signature="method#getStateTime#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#9408#9850#0" expanded="true" />
+            <element signature="e#9849#9850#0" expanded="true" />
+            <element signature="method#stateTimeouts#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#seekTargetAt#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2063,10 +2237,45 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4291#4326#0" expanded="true" />
-            <element signature="e#4413#4456#0" expanded="true" />
-            <element signature="e#4592#4635#0" expanded="true" />
-            <element signature="e#5033#5081#0" expanded="true" />
+            <element signature="method#onCreate#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleRedTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleBlueTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleMissionComplete#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onCommandRecieved#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStart#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStop#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onLocationChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#4907#4942#0" expanded="true" />
+            <element signature="e#5262#5305#0" expanded="true" />
+            <element signature="e#5441#5484#0" expanded="true" />
+            <element signature="method#onSensorChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6049#6097#0" expanded="true" />
+            <element signature="method#redScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6212#6492#0" expanded="true" />
+            <element signature="e#6491#6492#0" expanded="true" />
+            <element signature="e#6535#6819#0" expanded="true" />
+            <element signature="e#6818#6819#0" expanded="true" />
+            <element signature="e#6864#7199#0" expanded="true" />
+            <element signature="e#7198#7199#0" expanded="true" />
+            <element signature="method#blueScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#7323#7604#0" expanded="true" />
+            <element signature="e#7603#7604#0" expanded="true" />
+            <element signature="e#7647#7931#0" expanded="true" />
+            <element signature="e#7930#7931#0" expanded="true" />
+            <element signature="e#7977#8312#0" expanded="true" />
+            <element signature="e#8311#8312#0" expanded="true" />
+            <element signature="method#homeScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#8400#8684#0" expanded="true" />
+            <element signature="e#8683#8684#0" expanded="true" />
+            <element signature="e#8727#8940#0" expanded="true" />
+            <element signature="e#8939#8940#0" expanded="true" />
+            <element signature="e#8986#9316#0" expanded="true" />
+            <element signature="e#9315#9316#0" expanded="true" />
+            <element signature="method#getStateTime#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#9408#9850#0" expanded="true" />
+            <element signature="e#9849#9850#0" expanded="true" />
+            <element signature="method#stateTimeouts#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#seekTargetAt#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2094,24 +2303,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.757158">
+          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30706522">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.18478261">
+          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/rosehulman/onegoodgpsreading/OneGoodGpsReadingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5344645">
-          <caret line="98" column="59" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.39824945">
+          <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4291#4326#0" expanded="true" />
-            <element signature="e#4413#4456#0" expanded="true" />
-            <element signature="e#4592#4635#0" expanded="true" />
-            <element signature="e#5033#5081#0" expanded="true" />
+            <element signature="method#onCreate#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleRedTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleBlueTeamGo#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#handleMissionComplete#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onCommandRecieved#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStart#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onStop#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#onLocationChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#4907#4942#0" expanded="true" />
+            <element signature="e#5262#5305#0" expanded="true" />
+            <element signature="e#5441#5484#0" expanded="true" />
+            <element signature="method#onSensorChanged#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6049#6097#0" expanded="true" />
+            <element signature="method#redScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#6212#6492#0" expanded="true" />
+            <element signature="e#6491#6492#0" expanded="true" />
+            <element signature="e#6535#6819#0" expanded="true" />
+            <element signature="e#6818#6819#0" expanded="true" />
+            <element signature="e#6864#7199#0" expanded="true" />
+            <element signature="e#7198#7199#0" expanded="true" />
+            <element signature="method#blueScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#7323#7604#0" expanded="true" />
+            <element signature="e#7603#7604#0" expanded="true" />
+            <element signature="e#7647#7931#0" expanded="true" />
+            <element signature="e#7930#7931#0" expanded="true" />
+            <element signature="e#7977#8312#0" expanded="true" />
+            <element signature="e#8311#8312#0" expanded="true" />
+            <element signature="method#homeScript#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#8400#8684#0" expanded="true" />
+            <element signature="e#8683#8684#0" expanded="true" />
+            <element signature="e#8727#8940#0" expanded="true" />
+            <element signature="e#8939#8940#0" expanded="true" />
+            <element signature="e#8986#9316#0" expanded="true" />
+            <element signature="e#9315#9316#0" expanded="true" />
+            <element signature="method#getStateTime#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="e#9408#9850#0" expanded="true" />
+            <element signature="e#9849#9850#0" expanded="true" />
+            <element signature="method#stateTimeouts#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
+            <element signature="method#seekTargetAt#0;class#OneGoodGpsReadingActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>

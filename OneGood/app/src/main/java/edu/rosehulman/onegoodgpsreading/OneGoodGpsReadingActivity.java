@@ -15,6 +15,7 @@ import edu.rosehulman.onegoodgpsreading.me435.FieldGps;
 import edu.rosehulman.onegoodgpsreading.me435.FieldGpsListener;
 import edu.rosehulman.onegoodgpsreading.me435.FieldOrientation;
 import edu.rosehulman.onegoodgpsreading.me435.FieldOrientationListener;
+import edu.rosehulman.onegoodgpsreading.me435.NavUtils;
 
 enum State
 {
@@ -31,6 +32,10 @@ public class OneGoodGpsReadingActivity extends AccessoryActivity implements Fiel
         FieldOrientationListener
 {
     // Various constants and member variable names.
+    public static final int LOWEST_DESIRABLE_DUTY_CYCLE = 150;
+    public static final int LEFT_PWM_VALUE_FOR_STRAIGHT = 245;
+    public static final int RIGHT_PWM_VALUE_FOR_STRAIGHT = 255;
+
     private static final String TAG = "OneGoodGps";
     private static final double NO_HEADING_KNOWN = 360.0;
     private TextView mCurrentStateTextView, mStateTimeTextView, mGpsInfoTextView, mSensorOrientationTextView;
@@ -45,6 +50,7 @@ public class OneGoodGpsReadingActivity extends AccessoryActivity implements Fiel
     private FieldOrientation mFieldOrientation;
 
     private State currentState;
+    private int currentStateTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +68,11 @@ public class OneGoodGpsReadingActivity extends AccessoryActivity implements Fiel
         mSensorOrientationTextView = (TextView) findViewById(R.id.orientation_textview);
         currentState = State.READY;
         mCurrentStateTextView.setText("" + currentState);
+
+        currentStateTime = 0;
+
+        getStateTime();
+
     }
 
 
@@ -70,36 +81,48 @@ public class OneGoodGpsReadingActivity extends AccessoryActivity implements Fiel
         if (currentState == State.READY)
         {
             currentState = State.REDSCRIPT;
-            mCurrentStateTextView.setText(""+currentState);
+            mCurrentStateTextView.setText("" + currentState);
+            currentStateTime = 0;
+
+            //Toast.makeText(this, "You clicked Red Team Go!", Toast.LENGTH_SHORT).show();
+            redScript();
         }
 
-        Toast.makeText(this, "You clicked Red Team Go!", Toast.LENGTH_SHORT).show();
+
     }
 
     public void handleBlueTeamGo(View view)
     {
-        if(currentState == State.READY)
+        if (currentState == State.READY)
         {
             currentState = State.BLUESCRIPT;
-            mCurrentStateTextView.setText(""+currentState);
+            mCurrentStateTextView.setText("" + currentState);
+            currentStateTime = 0;
+
+            //Toast.makeText(this, "You clicked Blue Team Go!", Toast.LENGTH_SHORT).show();
+            blueScript();
         }
-        Toast.makeText(this, "You clicked Blue Team Go!", Toast.LENGTH_SHORT).show();
+
     }
 
     public void handleFakeGps(View view)
     {
-        Toast.makeText(this, "You clicked Fake GPS Signal", Toast.LENGTH_SHORT).show();
+        
+        onLocationChanged(40,10,135,null);
+        //Toast.makeText(this, "You clicked Fake GPS Signal", Toast.LENGTH_SHORT).show();
     }
 
     public void handleMissionComplete(View view)
     {
-        if(currentState==State.WAITINGPICKUP)
+        if (currentState == State.WAITINGPICKUP)
         {
             currentState = State.READY;
-            mCurrentStateTextView.setText(""+currentState);
+            mCurrentStateTextView.setText("" + currentState);
+            currentStateTime = 0;
         }
         Toast.makeText(this, "You clicked Mission Complete!", Toast.LENGTH_SHORT).show();
         sendCommand("CUSTOM WubbaLubbaDubDub");
+        mGpsInfoTextView.setText("---");
     }
 
     public void onCommandRecieved(String receivedCommand)
@@ -138,16 +161,28 @@ public class OneGoodGpsReadingActivity extends AccessoryActivity implements Fiel
         String gpsInfo = getString(R.string.xy_format, x, y);
         if (heading <= 180 && heading > -180)
         {
+            if (currentState == State.WAITINGGPS)
+            {
+                currentState = State.DRIVINGHOME;
+                mCurrentStateTextView.setText("" + currentState);
+                currentStateTime = 0;
+
+            }
             gpsInfo += " " + getString(R.string.degrees_format, heading);
             mCurrentGpsHeading = heading;
             mCurrentSensorHeading = heading;
             mSensorOrientationTextView.setText(getString(R.string.degrees_format, heading));
-        } else
+        }
+        else
         {
             gpsInfo += " ?°";
         }
         gpsInfo += "   " + mGpsCounter;
         mGpsInfoTextView.setText(gpsInfo);
+        if (currentState == State.DRIVINGHOME)
+        {
+            homeScript();// keep this from blocking in the middle of obtaining GPS reading.
+        }
     }
 
     /*
@@ -160,4 +195,187 @@ public class OneGoodGpsReadingActivity extends AccessoryActivity implements Fiel
         mCurrentSensorHeading = fieldHeading;
         mSensorOrientationTextView.setText(getString(R.string.degrees_format, fieldHeading));
     }
+
+    /*
+   ****RED SCRIPT***
+    */
+    public void redScript()
+    {
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Toast.makeText(OneGoodGpsReadingActivity.this, "RED", Toast.LENGTH_SHORT).show();
+                sendCommand("WHEEL SPEED FORWARD 175 FORWARD 200");
+            }
+        }, 0);
+
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Toast.makeText(OneGoodGpsReadingActivity.this, "DRIVING", Toast.LENGTH_SHORT).show();
+                sendCommand("WHEEL SPEED FORWARD 150 FORWARD 175");
+            }
+        }, 2000);
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                sendCommand("WHEEL SPEED FORWARD 150 FORWARD 150");
+                currentStateTime = 0;
+                currentState = State.WAITINGGPS;
+                mCurrentStateTextView.setText("" + currentState);
+            }
+        }, 4000);
+
+
+    }
+
+    /*
+    ****BLUE SCRIPT
+     */
+    public void blueScript()
+    {
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Toast.makeText(OneGoodGpsReadingActivity.this, "BLUE", Toast.LENGTH_SHORT).show();
+                sendCommand("WHEEL SPEED FORWARD 200 FORWARD 175");
+            }
+        }, 0);
+
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Toast.makeText(OneGoodGpsReadingActivity.this, "DRIVING", Toast.LENGTH_SHORT).show();
+                sendCommand("WHEEL SPEED FORWARD 175 FORWARD 150");
+            }
+        }, 2000);
+
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                sendCommand("WHEEL SPEED FORWARD 150 FORWARD 150");
+                currentStateTime = 0;
+                currentState = State.WAITINGGPS;
+                mCurrentStateTextView.setText("" + currentState);
+            }
+        }, 4000);
+
+    }
+
+    public void homeScript()
+    {
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Toast.makeText(OneGoodGpsReadingActivity.this, "DRIVING", Toast.LENGTH_SHORT).show();
+                sendCommand("WHEEL SPEED FORWARD 150 FORWARD 250");
+            }
+        }, 0);
+
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Toast.makeText(OneGoodGpsReadingActivity.this, "HOME", Toast.LENGTH_SHORT).show();
+            }
+        }, 3000);
+
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                sendCommand("WHEEL SPEED BRAKE 0 BRAKE 0");
+                currentState = State.WAITINGPICKUP;
+                currentStateTime = 0;
+                mCurrentStateTextView.setText("" + currentState);
+            }
+        }, 5000);
+
+    }
+
+    public void getStateTime()
+    {
+
+
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                currentStateTime++;
+                mStateTimeTextView.setText("" + currentStateTime);
+                if(currentState == State.SEEKINGHOME){
+                    seekTargetAt(0,0);
+                }
+                stateTimeouts();
+                getStateTime();//recursive with no termination. I know, I know.
+            }
+        }, 1000);
+
+
+    }
+
+    public void stateTimeouts()
+    {
+        if (currentState == State.WAITINGGPS && currentStateTime >= 5)
+        {
+            currentStateTime = 0;
+            mStateTimeTextView.setText("0");
+            currentState = State.SEEKINGHOME;
+            mCurrentStateTextView.setText(""+currentState);
+
+        }
+        else if (currentState == State.SEEKINGHOME && currentStateTime >= 8)
+        {
+            currentStateTime = 0;
+            mStateTimeTextView.setText("0");
+            currentState = State.WAITINGPICKUP;
+            mCurrentStateTextView.setText(""+currentState);
+        }
+        else if (currentState == State.WAITINGPICKUP && currentStateTime >= 8)
+        {
+            currentStateTime = 0;
+            mStateTimeTextView.setText("0");
+            currentState = State.SEEKINGHOME;
+            mCurrentStateTextView.setText(""+currentState);
+        }
+        else
+        {
+            //do nothing
+        }
+    }
+    private void seekTargetAt(double xTarget, double yTarget) {
+        int leftDutyCycle = LEFT_PWM_VALUE_FOR_STRAIGHT;
+        int rightDutyCycle = RIGHT_PWM_VALUE_FOR_STRAIGHT;
+        double targetHeading = NavUtils.getTargetHeading(mCurrentGpsX, mCurrentGpsY, xTarget, yTarget);
+        double leftTurnAmount = NavUtils.getLeftTurnHeadingDelta(mCurrentSensorHeading, targetHeading);
+        double rightTurnAmount = NavUtils.getRightTurnHeadingDelta(mCurrentSensorHeading, targetHeading);
+
+        if (leftTurnAmount < rightTurnAmount) {
+            leftDutyCycle = LEFT_PWM_VALUE_FOR_STRAIGHT - (int)leftTurnAmount; // Using a VERY simple plan. :)
+            leftDutyCycle = Math.max(leftDutyCycle, LOWEST_DESIRABLE_DUTY_CYCLE);
+        } else {
+            rightDutyCycle = RIGHT_PWM_VALUE_FOR_STRAIGHT - (int)rightTurnAmount; // Could also scale it.
+            rightDutyCycle = Math.max(rightDutyCycle, LOWEST_DESIRABLE_DUTY_CYCLE);
+        }
+        sendCommand("WHEEL SPEED FORWARD " + leftDutyCycle + " FORWARD " + rightDutyCycle);
+    }
+
+
 }
