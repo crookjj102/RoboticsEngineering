@@ -1,33 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2" />
 
-    <item
-        jar="C:\Users\doughezj\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="C:\Users\doughezj\Documents\ME435\inClass\4_21\OneGood\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1_e1607341e73ad806d249a5648dbebf393e1f53fa.jar" />
-    </item>
-    <item
-        jar="C:\Users\doughezj\Documents\ME435\inClass\4_21\OneGood\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="C:\Users\doughezj\Documents\ME435\inClass\4_21\OneGood\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1_f6cda27b27a15314e8b65a643d100c3e15a03712.jar" />
-    </item>
-    <item
-        jar="C:\Users\doughezj\Documents\ME435\inClass\4_21\OneGood\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="C:\Users\doughezj\Documents\ME435\inClass\4_21\OneGood\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.0.1_4e85595397315f04bd4f4ff1189da7b13d530c1d.jar" />
-    </item>
-    <item
-        jar="C:\Users\doughezj\Documents\ME435\inClass\4_21\OneGood\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="C:\Users\doughezj\Documents\ME435\inClass\4_21\OneGood\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.0.1_8dce319e39b4f605fa5dfe7bc70834291f96db80.jar" />
-    </item>
-
-</items>
