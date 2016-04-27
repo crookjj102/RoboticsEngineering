@@ -22,7 +22,7 @@ byte rxBuf[255];
 // Note, when sending commands to Android I don't add the '\n'.
 // Turned out to be easier to just assume the whole message arrives together.
 // Seems to work fine.  Just separate into different write() commands.
-char rightButtonScript[] = "port_ball";
+char rightButtonScript[] = "ball_present";
 char leftButtonScript[] = "center_ball";
 char selectButtonScript[] = "starboard_ball";
 
