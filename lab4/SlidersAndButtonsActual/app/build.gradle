@@ -6,6 +6,8 @@ android {
 
     defaultConfig {
         applicationId "edu.rosehulman.slidersandbuttons"
+        minSdkVersion 7
+        targetSdkVersion 23
     }
 
     buildTypes {

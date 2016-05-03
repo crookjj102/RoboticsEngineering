@@ -55,47 +55,42 @@ public class MainActivity extends AccessoryActivity implements OnSeekBarChangeLi
     // ------------------------ Button Listeners ------------------------
     public void handleHomeClick(View view) {
         updateSlidersForPosition(0, 90, 0, -90, 90);
-        Toast.makeText(this, "TODO: Test this button", Toast.LENGTH_SHORT).show();
         sendCommand("POSITION 0 90 0 -90 90");
     }
 
     public void handlePosition1Click(View view) {
         updateSlidersForPosition(40, 30, 10, -20, 50);
-        Toast.makeText(this, "TODO: Test this button", Toast.LENGTH_SHORT).show();
-        sendCommand("POSITION 40 30 10 -20 50");
+        sendCommand("POSITION 40 90 10 -20 50");
     }
 
     public void handlePosition2Click(View view) {
-        updateSlidersForPosition(-40, -30, -10, 20, -50);
-        Toast.makeText(this, "TODO: Test this button", Toast.LENGTH_SHORT).show();
+        updateSlidersForPosition(-40, 150, -10, -160, 130);
         sendCommand("POSITION -40 -30 -10 20 -50");
     }
 
     public void handleScript1Click(View view) {
-        Toast.makeText(this, "TODO: Test this button", Toast.LENGTH_SHORT).show();
         sendCommand("GRIPPER 10");
         mCommandHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                sendCommand("GRIPPER 60");
+                sendCommand("POSITION 40 90 0 -90 90");
             }
         }, 1000);
         mCommandHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                sendCommand("GRIPPER 10");
+                sendCommand("POSITION 0 60 0 -45 45");
             }
         }, 1000);
         mCommandHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                sendCommand("GRIPPER 50");
+                sendCommand("POSITION 0 80 0 -30 90");
             }
         }, 1000);
     }
 
     public void handleScript2Click(View view) {
-        Toast.makeText(this, "TODO: Test this button", Toast.LENGTH_SHORT).show();
         sendCommand("GRIPPER 10");
         mCommandHandler.postDelayed(new Runnable() {
             @Override
@@ -118,53 +113,53 @@ public class MainActivity extends AccessoryActivity implements OnSeekBarChangeLi
     }
 
     public void handleScript3Click(View view) {
-        Toast.makeText(this, "TODO: Test this button", Toast.LENGTH_SHORT).show();
-        sendCommand("GRIPPER 10");
+        sendCommand("POSITION 0 90 0 -90 90");
         mCommandHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                sendCommand("GRIPPER 60");
+                sendCommand("POSITION -20 30 -10 -15 15");
             }
         }, 1000);
         mCommandHandler.postDelayed(new Runnable(){
             @Override
             public void run(){
-                sendCommand("GRIPPER 10");
+                sendCommand("POSITION 20 60 10 -30 45");
             }
         }, 1000);
         mCommandHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                sendCommand("GRIPPER 50");
+                sendCommand("POSITION -20 30 -10 -15 15");
             }
         }, 1000);
     }
 
     public void handleStopClick(View view) {
-        Toast.makeText(this, "TODO: Implement button", Toast.LENGTH_SHORT).show();
+        sendCommand("WHEEL SPEED BRAKE 0 BRAKE 0");
+
     }
 
     public void handleForwardClick(View view) {
-        Toast.makeText(this, "TODO: Implement button", Toast.LENGTH_SHORT).show();
+        sendCommand("WHEEL SPEED FORWARD 100 FORWARD 100");
     }
 
     public void handleBackClick(View view) {
-        Toast.makeText(this, "TODO: Implement button", Toast.LENGTH_SHORT).show();
+        sendCommand("WHEEL SPEED REVERSE 100 REVERSE 100");
     }
 
     public void handleLeftClick(View view) {
-        Toast.makeText(this, "TODO: Implement button", Toast.LENGTH_SHORT).show();
+        sendCommand("WHEEL SPEED FORWARD 50 FORWARD 200");
     }
 
     public void handleRightClick(View view) {
-        Toast.makeText(this, "TODO: Implement button", Toast.LENGTH_SHORT).show();
-    }
+        sendCommand("WHEEL SPEED FORWARD 200 FORWARD 50");
+        }
 
     public void handleBatteryClick(View view) {
-        Toast.makeText(this, "TODO: Implement button", Toast.LENGTH_SHORT).show();
         // Need to send BATTERY VOLTAGE REQUEST
         // Toast all replies.  Arduino will reply with a BATTERY VOLTAGE REPLY.
         // Receive messages will arrive via onCommandReceived
+        sendCommand("BATTERY VOLTAGE REQUEST");
     }
 
     // ------------------------ OnSeekBarChangeListener ------------------------
@@ -225,7 +220,27 @@ public class MainActivity extends AccessoryActivity implements OnSeekBarChangeLi
         super.onCommandReceived(receivedCommand);
         Toast.makeText(this, "Received: " + receivedCommand, Toast.LENGTH_SHORT).show();
         if(receivedCommand.equalsIgnoreCase("ball_present")){
-            //add script here
+            sendCommand("GRIPPER 10");
+            mCommandHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    sendCommand("POSITION 40 90 0 -90 90");
+                }
+            }, 1000);
+            mCommandHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    sendCommand("POSITION 0 60 0 -45 45");
+                }
+            }, 1000);
+            mCommandHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    sendCommand("POSITION 0 80 0 -30 90");
+                }
+            }, 1000);
+        }
+        else if(receivedCommand.equalsIgnoreCase("center_ball")){
             sendCommand("GRIPPER 10");
             mCommandHandler.postDelayed(new Runnable() {
                 @Override
@@ -245,6 +260,28 @@ public class MainActivity extends AccessoryActivity implements OnSeekBarChangeLi
                     sendCommand("GRIPPER 50");
                 }
             }, 1000);
+        }else if(receivedCommand.equalsIgnoreCase("starboard_ball")){
+            sendCommand("POSITION 0 90 0 -90 90");
+            mCommandHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    sendCommand("POSITION -20 30 -10 -15 15");
+                }
+            }, 1000);
+            mCommandHandler.postDelayed(new Runnable(){
+                @Override
+                public void run(){
+                    sendCommand("POSITION 20 60 10 -30 45");
+                }
+            }, 1000);
+            mCommandHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    sendCommand("POSITION -20 30 -10 -15 15");
+                }
+            }, 1000);
+        }else{
+            Toast.makeText(this, receivedCommand, Toast.LENGTH_SHORT).show();
         }
     }
 
