@@ -128,6 +128,9 @@ void runColors() {
 
 
 void adjustColorsBasedOnOptions() {
+  //we should have the c++ return the top # most likely options
+  //if we don't have a valid combo with the top options,
+  //try again with each lower permutation of likely options
 
 
   bool answerValid = false;
