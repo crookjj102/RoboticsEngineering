@@ -379,4 +379,5 @@ public class ConeFinderActivity extends AppCompatActivity implements CameraBridg
     }
 
 
+
 }

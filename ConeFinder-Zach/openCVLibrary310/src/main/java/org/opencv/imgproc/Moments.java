@@ -144,7 +144,7 @@ public class Moments {
             "\n]";
     }
 
-    protected void completeState()
+    public void completeState()
     {
         double cx = 0, cy = 0;
         double mu20, mu11, mu02;
