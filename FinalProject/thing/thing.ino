@@ -18,10 +18,15 @@ AndroidAccessory acc(manufacturer, model, model, versionStr,
 
 int ballColor_1, ballColor_2, ballColor_3;
 
-char rxBuf[255];
+byte rxBuf[255];
 char txBuf[64];
 int wheelCurrentReplyLength = 0;
 int batteryVoltageReplyLength = 0;
+
+/***  Pin I/O   ***/ 
+#define PIN_RIGHT_BUTTON 2
+#define PIN_LEFT_BUTTON 3
+#define PIN_SELECT_BUTTON 21
 
 /*** Interrupt flags ***/
 volatile int mainEventFlags = 0;
@@ -56,6 +61,7 @@ void setup() {
   robotAsciiCom.registerAttachSelectedServosCallback(attachSelectedServosCallback);
   robotAsciiCom.registerBatteryVoltageRequestCallback(batteryVoltageRequestFromAndroid);
   robotAsciiCom.registerWheelCurrentRequestCallback(wheelCurrentRequestFromAndroid);
+  robotAsciiCom.registerCustomStringCallback(customStringCallbackFromAndroid);
   
   // Register callbacks for commands you might receive from the Wild Thumper.
   wildThumperCom.registerBatteryVoltageReplyCallback(batteryVoltageReplyFromThumper);
@@ -75,13 +81,7 @@ void loop() {
   if (acc.isConnected()) {
     int len = acc.read(rxBuf, sizeof(rxBuf), 1);
     if (len > 0) {
-      rxBuf[len - 1] = '\0';
-      String inputString = String(rxBuf);
-      if (inputString.equalsIgnoreCase("TEST")) {
-        runColors();
-      }else{
         robotAsciiCom.handleRxBytes(rxBuf, len);
-      }
     }
     if(done){
       done = false;
@@ -213,6 +213,15 @@ void batteryVoltageRequestFromAndroid(void) {
 
 void wheelCurrentRequestFromAndroid(void) {
   wildThumperCom.sendWheelCurrentRequest();
+}
+
+void customStringCallbackFromAndroid(String customString) {
+  if (customString.equalsIgnoreCase("TEST")) {
+    // perform that command
+    runColors();
+  } else {
+    Serial.println("Unknown Custom Command");
+  }
 }
 
 void batteryVoltageReplyFromThumper(int batteryMillivolts) {
