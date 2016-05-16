@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_07cbcf08ac4cc8a0f5f0c7a740269ce2a7337cb9\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_d2aa13d2aa1e6dcd86c71adf47cae6340bd8c6f9\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_55be5d276557395782390fbfdc4506d0699ec17e\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_3764ec0ca08dab3cedbc9fd107bd8540bf22500c\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5e7aefec2d45d6d6af2e6680c0c5c8a1e7003da5">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_0672ff6671143fa059522105aa7ac1be8cdea45f\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="7d89a5f0dbbe159716bc1bbfa87104af12d17901">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3c87c41c62082e8cfea3b8b24a9e00a97c7919f1\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.3.0_69d907b5e9546d88d08b61de6acd92f75897e6b3\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_f50f87eae2cea78c44a558625580cc682f337490\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.3.0_46118a6e4398fd261fe67a209732fc85f22f944d\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\crook\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="D:\Users\crookjj\Documents\RoboticsEngineering\IntegratingVision\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_db01d077162d14047be5a246166d5877bcd64608\classes.dex" />
+    </item>
+
+</items>

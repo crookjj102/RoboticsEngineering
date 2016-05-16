@@ -1,13 +1,13 @@
 package me435;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /** 
  * This class is intended to be subclasses by your main activity. It subclasses
@@ -267,7 +267,7 @@ public class RobotActivity extends AccessoryActivity implements FieldGpsListener
       }
     }, 0, LOOP_INTERVAL_MS);
     mFieldOrientation.registerListener(this);
-    mFieldGps.requestLocationUpdates(this, 1000, 0);
+    //mFieldGps.requestLocationUpdates(this, 1000, 0);
   }
 
   @Override
@@ -277,7 +277,7 @@ public class RobotActivity extends AccessoryActivity implements FieldGpsListener
     mTimer.cancel();
     mTimer = null;
     mFieldOrientation.unregisterListener();
-    mFieldGps.removeUpdates();
+    //mFieldGps.removeUpdates();
   }
 
   /**

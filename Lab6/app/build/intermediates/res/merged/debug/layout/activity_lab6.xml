@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.rose_hulman.crook.lab6.Lab6Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ball 1"
+        android:id="@+id/Ball1Text"
+        android:layout_alignTop="@+id/Ball2Text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ball 2"
+        android:id="@+id/Ball2Text"
+        android:layout_alignTop="@+id/Ball3Text"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ball 3"
+        android:id="@+id/Ball3Text"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="63dp"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:id="@+id/ClearButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="handleClear"
+        />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perform Ball Test"
+        android:id="@+id/BallTestButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="handleBallTest"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/Ball1Text"
+        android:id="@+id/Ball1ValueText"
+        android:layout_below="@+id/Ball1Text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/Ball2Text"
+        android:id="@+id/Ball2ValueText"
+        android:layout_alignTop="@+id/Ball1ValueText"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/Ball3Text"
+        android:id="@+id/Ball3ValueText"
+        android:layout_below="@+id/Ball3Text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blue"
+        android:id="@+id/Blue1Button"
+        android:layout_below="@+id/White1Button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/White1Button"
+        android:layout_alignEnd="@+id/White1Button"
+        android:onClick="handleBlue1"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red"
+        android:id="@+id/Red1Button"
+        android:layout_below="@+id/Blue1Button"
+        android:layout_alignLeft="@+id/Blue1Button"
+        android:layout_alignStart="@+id/Blue1Button"
+        android:layout_alignRight="@+id/Blue1Button"
+        android:layout_alignEnd="@+id/Blue1Button"
+        android:onClick="handleRed1"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yellow"
+        android:id="@+id/Yellow1Button"
+        android:layout_below="@+id/Ball1ValueText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="handleYellow1"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Black"
+        android:id="@+id/Black1Button"
+        android:layout_below="@+id/Yellow1Button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/Yellow1Button"
+        android:layout_alignEnd="@+id/Yellow1Button"
+        android:onClick="handleBlack1"/>
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Green"
+        android:id="@+id/Green1Button"
+        android:layout_below="@+id/Black1Button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/Black1Button"
+        android:layout_alignEnd="@+id/Black1Button"
+        android:onClick="handleGreen1"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="White"
+        android:id="@+id/White1Button"
+        android:layout_below="@+id/Green1Button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/Green1Button"
+        android:layout_alignEnd="@+id/Green1Button"
+        android:onClick="handleWhite1"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yellow"
+        android:id="@+id/Yellow2Button"
+        android:layout_below="@+id/Ball2ValueText"
+        android:layout_centerHorizontal="true"
+        android:onClick="handleYellow2"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Black"
+        android:id="@+id/Black2Button"
+        android:layout_alignTop="@+id/Black1Button"
+        android:layout_alignLeft="@+id/Yellow2Button"
+        android:layout_alignStart="@+id/Yellow2Button"
+        android:layout_alignRight="@+id/Yellow2Button"
+        android:layout_alignEnd="@+id/Yellow2Button"
+        android:onClick="handleBlack2"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Green"
+        android:id="@+id/Green2Button"
+        android:layout_below="@+id/Black2Button"
+        android:layout_alignLeft="@+id/Black2Button"
+        android:layout_alignStart="@+id/Black2Button"
+        android:layout_alignRight="@+id/Black2Button"
+        android:layout_alignEnd="@+id/Black2Button"
+        android:onClick="handleGreen2"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="White"
+        android:id="@+id/White2Button"
+        android:layout_alignTop="@+id/White1Button"
+        android:layout_alignLeft="@+id/Green2Button"
+        android:layout_alignStart="@+id/Green2Button"
+        android:layout_alignRight="@+id/Green2Button"
+        android:layout_alignEnd="@+id/Green2Button"
+        android:onClick="handleWhite2"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blue"
+        android:id="@+id/Blue2Button"
+        android:layout_above="@+id/Red2Button"
+        android:layout_alignLeft="@+id/Red2Button"
+        android:layout_alignStart="@+id/Red2Button"
+        android:layout_alignRight="@+id/White2Button"
+        android:layout_alignEnd="@+id/White2Button"
+        android:onClick="handleBlue2"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red"
+        android:id="@+id/Red2Button"
+        android:layout_alignTop="@+id/Red1Button"
+        android:layout_alignLeft="@+id/Green2Button"
+        android:layout_alignStart="@+id/Green2Button"
+        android:layout_alignRight="@+id/White2Button"
+        android:layout_alignEnd="@+id/White2Button"
+        android:onClick="handleRed2"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yellow"
+        android:id="@+id/Yellow3Button"
+        android:layout_below="@+id/Ball3ValueText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="handleYellow3"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Black"
+        android:id="@+id/Black3Button"
+        android:layout_below="@+id/Yellow3Button"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/Yellow3Button"
+        android:layout_alignStart="@+id/Yellow3Button"
+        android:onClick="handleBlack3"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Green"
+        android:id="@+id/Green3Button"
+        android:layout_below="@+id/Black3Button"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/Black3Button"
+        android:layout_alignStart="@+id/Black3Button"
+        android:onClick="handleGreen3"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="White"
+        android:id="@+id/White3Button"
+        android:layout_below="@+id/Green3Button"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/Green3Button"
+        android:layout_alignStart="@+id/Green3Button"
+        android:onClick="handleWhite3"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blue"
+        android:id="@+id/Blue3Button"
+        android:layout_below="@+id/White3Button"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/White3Button"
+        android:layout_alignStart="@+id/White3Button"
+        android:onClick="handleBlue3"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red"
+        android:id="@+id/Red3Button"
+        android:layout_below="@+id/Blue3Button"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/Blue3Button"
+        android:layout_alignStart="@+id/Blue3Button"
+        android:onClick="handleRed3"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GO!"
+        android:id="@+id/GoButton"
+        android:layout_below="@+id/Red1Button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="handleGo"/>
+
+</RelativeLayout>
