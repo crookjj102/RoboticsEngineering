@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="23"
-    density="xxhdpi"
+    abi="armeabi-v7a,armeabi"
+    api-level="22"
+    density="tvdpi"
     format="7"
-    timestamp="124457007359123" >
+    timestamp="28227773839542" >
 
     <task
         name="javac"
-        duration="1512" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="620" />
+        duration="0" />
     <task
         name="verifier"
-        duration="708" />
+        duration="0" />
 
     <artifact
-        location="D:\Users\crookjj\Documents\RoboticsEngineering\GolfBallDelivery\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
+        location="D:\Users\crookjj\Documents\RoboticsEngineering\GolfBallDelivery\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_9\classes.dex"
+        type="DEX" />
+    <artifact
+        location="D:\Users\crookjj\Documents\RoboticsEngineering\GolfBallDelivery\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_8\classes.dex"
+        type="DEX" />
 
-    <build timestamp="124457007359123" >
+    <build timestamp="27047915983108" >
         <artifact
             location="D:\Users\crookjj\Documents\RoboticsEngineering\GolfBallDelivery\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
+    </build>
+    <build timestamp="28227773839542" >
+        <artifact
+            location="D:\Users\crookjj\Documents\RoboticsEngineering\GolfBallDelivery\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_9\classes.dex"
+            type="DEX" />
+        <artifact
+            location="D:\Users\crookjj\Documents\RoboticsEngineering\GolfBallDelivery\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_8\classes.dex"
+            type="DEX" />
     </build>
 
 </instant-run>

@@ -39,6 +39,7 @@ public class GolfBallDeliveryActivity extends RobotActivity
 
     public enum State
     {
+        WARMUP,
         READY_FOR_MISSION,
         NEAR_BALL_SCRIPT,
         DRIVE_TOWARD_FAR_BALL,
@@ -175,13 +176,13 @@ public class GolfBallDeliveryActivity extends RobotActivity
         mScripts = new Scripts(this);
 
         // When you start using the real hardware you don't need test buttons.
-        boolean hideFakeGpsButtons = false;
+        boolean hideFakeGpsButtons = true;
         if (hideFakeGpsButtons)
         {
             TableLayout fakeGpsButtonTable = (TableLayout) findViewById(R.id.fake_gps_button_table);
             fakeGpsButtonTable.setVisibility(View.GONE);
         }
-        setState(State.READY_FOR_MISSION);
+        setState(State.WARMUP);
 
         setLocationToColor(1, BallColor.RED);
         setLocationToColor(2, BallColor.WHITE);
@@ -438,7 +439,11 @@ public class GolfBallDeliveryActivity extends RobotActivity
 
     public void handleGoOrMissionComplete(View view)
     {
-        if (mState == State.READY_FOR_MISSION)
+        if (mState == State.WARMUP)
+        {
+            //do nothing.
+        }
+        else if (mState == State.READY_FOR_MISSION)
         {
             mMatchStartTime = System.currentTimeMillis();
             updateMissionStrategyVariables();
@@ -489,16 +494,20 @@ public class GolfBallDeliveryActivity extends RobotActivity
         mGpsInfoTextView.setText(gpsInfo);
 
 
-        if (mState == State.DRIVE_TOWARD_FAR_BALL) {
+        if (mState == State.DRIVE_TOWARD_FAR_BALL)
+        {
             double distanceFromTarget = NavUtils.getDistance(mCurrentGpsX, mCurrentGpsY,
                     FAR_BALL_GPS_X, mFarBallGpsY);
-            if (distanceFromTarget < ACCEPTED_DISTANCE_AWAY_FT) {
+            if (distanceFromTarget < ACCEPTED_DISTANCE_AWAY_FT)
+            {
                 setState(State.FAR_BALL_SCRIPT);
             }
         }
-        if (mState == State.DRIVE_TOWARDS_HOME) {
+        if (mState == State.DRIVE_TOWARDS_HOME)
+        {
             // Shorter to write since the RobotActivity already calculates the distance to 0, 0.
-            if (mCurrentGpsDistance < ACCEPTED_DISTANCE_AWAY_FT) {
+            if (mCurrentGpsDistance < ACCEPTED_DISTANCE_AWAY_FT)
+            {
                 setState(State.WAITING_FOR_PICKUP);
             }
         }
@@ -515,14 +524,23 @@ public class GolfBallDeliveryActivity extends RobotActivity
     public void setState(State newState)
     {
         mStateStartTime = System.currentTimeMillis();
+        if (mState == State.WARMUP && newState != State.READY_FOR_MISSION)
+        {
+            Toast.makeText(this, "ILLEGAL TRANSITION FROM WARMUP", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (mState == State.READY_FOR_MISSION && newState != State.NEAR_BALL_SCRIPT)
         {
             Toast.makeText(this, "ILLEGAL TRANSITION FROM READY STATE", Toast.LENGTH_SHORT).show();
             return;
         }
         mCurrentStateTextView.setText(newState.name());
+        mState = newState;
         switch (newState)
         {
+            case WARMUP:
+                sendWheelSpeed(0, 0);
+                break;
             case READY_FOR_MISSION:
                 mGoOrMissionCompleteButton.setBackgroundResource(R.drawable.green_button);
                 mGoOrMissionCompleteButton.setText("GO!");
@@ -549,7 +567,7 @@ public class GolfBallDeliveryActivity extends RobotActivity
                 //do nothing
                 break;
         }
-        mState = newState;
+
     }
 
     /**
@@ -598,7 +616,7 @@ public class GolfBallDeliveryActivity extends RobotActivity
         // Match timer.
         long matchTimeMs;
         long timeRemainingSeconds = MATCH_LENGTH_MS / 1000;
-        if (mState != State.READY_FOR_MISSION)
+        if (mState != State.READY_FOR_MISSION&&mState!=State.WARMUP)
         {
             matchTimeMs = getMatchTimeMs();
             timeRemainingSeconds = (MATCH_LENGTH_MS - matchTimeMs) / 1000;
@@ -611,6 +629,12 @@ public class GolfBallDeliveryActivity extends RobotActivity
 
         switch (mState)
         {
+            case WARMUP:
+                if (getStateTimeMs() > 30000)
+                {
+                    setState(State.READY_FOR_MISSION);
+                }
+                break;
             case DRIVE_TOWARD_FAR_BALL:
                 seekTargetAt(FAR_BALL_GPS_X, mFarBallGpsY);
                 break;
@@ -663,9 +687,6 @@ public class GolfBallDeliveryActivity extends RobotActivity
         }
         sendWheelSpeed(leftDutyCycle, rightDutyCycle);
     }
-
-    private double filterOrientationData()
-
 }
 
 
