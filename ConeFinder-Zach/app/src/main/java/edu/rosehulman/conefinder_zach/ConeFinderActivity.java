@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -151,7 +152,7 @@ public class ConeFinderActivity extends AppCompatActivity implements CameraBridg
             // Draw a circle on the screen at the center.
             double coneCenterX = topBottomLocation * mCameraViewWidth;
             double coneCenterY = (leftRightLocation + 1.0) / 2.0 * mCameraViewHeight;
-            Imgproc.circle(rgba, new Point(coneCenterX, coneCenterY), 5, CONTOUR_COLOR, -1);
+            //Imgproc.circle(rgba, new Point(coneCenterX, coneCenterY), 5, CONTOUR_COLOR, -1);
         }
         runOnUiThread(new Runnable() {
             public void run() {
@@ -172,6 +173,7 @@ public class ConeFinderActivity extends AppCompatActivity implements CameraBridg
      */
     private boolean findCone(List<MatOfPoint> contours, double minSizePercentage, double[] coneResult) {
         // Step #0: Determine if any contour regions were found that match the target color criteria.
+        //Toast.makeText(this,"findCone", Toast.LENGTH_SHORT).show();
         if (contours.size() == 0) {
             return false; // No contours found.
         }
@@ -195,9 +197,9 @@ public class ConeFinderActivity extends AppCompatActivity implements CameraBridg
         }
 
         // Step #3: Calculate the center of the blob.
-        Moments moments = Imgproc.moments(largestContour, false);
+        //Moments moments = Imgproc.moments(largestContour, false);
         // yep, the line above fails.  Comment out the line above and uncomment the line below.  For more info visit this page https://github.com/Itseez/opencv/issues/5017
-        //Moments moments = contourMoments(largestContour);
+        Moments moments = contourMoments(largestContour);
         double aveX = moments.get_m10() / moments.get_m00();
         double aveY = moments.get_m01() / moments.get_m00();
 
@@ -218,6 +220,7 @@ public class ConeFinderActivity extends AppCompatActivity implements CameraBridg
     /** Displays the blob target info in the text views. */
     public void onImageRecComplete(boolean coneFound, double leftRightLocation, double topBottomLocation, double sizePercentage) {
         if (coneFound) {
+            Toast.makeText(this,"onImageRecComplete", Toast.LENGTH_SHORT).show();
             mLeftRightLocationTextView.setText(String.format("%.3f", leftRightLocation));
             mTopBottomLocationTextView.setText(String.format("%.3f", topBottomLocation));
             mSizePercentageTextView.setText(String.format("%.5f", sizePercentage));

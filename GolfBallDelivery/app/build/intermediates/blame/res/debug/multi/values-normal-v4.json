@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Users\\crookjj\\Documents\\RoboticsEngineering\\GolfBallDelivery\\app\\build\\intermediates\\res\\merged\\debug\\values-normal-v4\\values-normal-v4.xml",
+        "outputFile": "C:\\Users\\doughezj\\Documents\\GitHub\\roboticsEngineering\\GolfBallDelivery\\app\\build\\intermediates\\res\\merged\\debug\\values-normal-v4\\values-normal-v4.xml",
         "map": [
             {
                 "to": {
@@ -12,14 +12,14 @@
                     "endOffset": 341
                 },
                 "from": {
-                    "file": "D:\\Users\\crookjj\\Documents\\RoboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\roboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 17,
+                        "startOffset": 19,
                         "endLine": 8,
                         "endColumn": 12,
-                        "endOffset": 303
+                        "endOffset": 311
                     }
                 }
             },
@@ -33,14 +33,14 @@
                     "endOffset": 501
                 },
                 "from": {
-                    "file": "D:\\Users\\crookjj\\Documents\\RoboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\roboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 341,
+                        "startOffset": 352,
                         "endLine": 13,
                         "endColumn": 12,
-                        "endOffset": 496
+                        "endOffset": 509
                     }
                 }
             },
@@ -54,14 +54,14 @@
                     "endOffset": 684
                 },
                 "from": {
-                    "file": "D:\\Users\\crookjj\\Documents\\RoboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\roboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
-                        "startOffset": 812,
+                        "startOffset": 834,
                         "endLine": 25,
                         "endColumn": 12,
-                        "endOffset": 990
+                        "endOffset": 1015
                     }
                 }
             },
@@ -75,14 +75,14 @@
                     "endOffset": 857
                 },
                 "from": {
-                    "file": "D:\\Users\\crookjj\\Documents\\RoboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\roboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
                     "position": {
                         "startLine": 34,
                         "startColumn": 4,
-                        "startOffset": 1280,
+                        "startOffset": 1314,
                         "endLine": 37,
                         "endColumn": 12,
-                        "endOffset": 1448
+                        "endOffset": 1485
                     }
                 }
             },
@@ -96,14 +96,14 @@
                     "endOffset": 1140
                 },
                 "from": {
-                    "file": "D:\\Users\\crookjj\\Documents\\RoboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\roboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 4,
-                        "startOffset": 996,
+                        "startOffset": 1023,
                         "endLine": 32,
                         "endColumn": 12,
-                        "endOffset": 1274
+                        "endOffset": 1306
                     }
                 }
             },
@@ -117,14 +117,14 @@
                     "endOffset": 1449
                 },
                 "from": {
-                    "file": "D:\\Users\\crookjj\\Documents\\RoboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
+                    "file": "C:\\Users\\doughezj\\Documents\\GitHub\\roboticsEngineering\\GolfBallDelivery\\app\\src\\main\\res\\values-normal\\styles.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 502,
+                        "startOffset": 517,
                         "endLine": 20,
                         "endColumn": 12,
-                        "endOffset": 806
+                        "endOffset": 826
                     }
                 }
             }
