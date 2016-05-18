@@ -1,13 +1,13 @@
 package edu.rosehulman.me435;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /** 
  * This class is intended to be subclasses by your main activity. It subclasses
@@ -206,33 +206,43 @@ public class RobotActivity extends AccessoryActivity implements FieldGpsListener
     }
 
     // If the vehicle is currently going straight and heading is present.
-    if (heading < 180.0 && heading > -180.0) {
-      mCurrentGpsHeading = heading;
-      if (mMovingStraight) {
-        mFieldOrientation.setCurrentFieldHeading(mCurrentGpsHeading);
-        if (mTalkingGps && (System.currentTimeMillis() - mLastTalkTime > 3000)) {
-		  mLastTalkTime = System.currentTimeMillis();
+    if (heading < 180.0 && heading > -180.0)
+    {
+      //mCurrentGpsHeading = heading;
+      if (mMovingStraight)
+      {
+        //mFieldOrientation.setCurrentFieldHeading(mCurrentGpsHeading);
+        if (mTalkingGps && (System.currentTimeMillis() - mLastTalkTime > 3000))
+        {
+          mLastTalkTime = System.currentTimeMillis();
           mTts.speak("" + (int) heading);
         }
       }
-    } else {
+    }
+    else
+    {
       // Consider reseting the sensor heading using the calculated heading.
       int calculatedGpsTrustThresholdCount = 3;
-      if (mMovingStraight && mSavedCalculatedGpsHeadings.size() > calculatedGpsTrustThresholdCount) {
+      if (mMovingStraight && mSavedCalculatedGpsHeadings.size() > calculatedGpsTrustThresholdCount)
+      {
         boolean resetSensorHeadingToCalculatedGpsHeading = true;
         double calculatedGpsTrustThresholdAngle = 15.0;
         double oldCalculatedGpsHeading;
-        for (int i = 0; i < calculatedGpsTrustThresholdCount; i++) {
+        for (int i = 0; i < calculatedGpsTrustThresholdCount; i++)
+        {
           oldCalculatedGpsHeading = mSavedCalculatedGpsHeadings.get(mSavedGpsXValues.size() - i - 1);
-          if (Math.abs(mCurrentCalculatedGpsHeading - oldCalculatedGpsHeading) > calculatedGpsTrustThresholdAngle) {
+          if (Math.abs(mCurrentCalculatedGpsHeading - oldCalculatedGpsHeading) > calculatedGpsTrustThresholdAngle)
+          {
             resetSensorHeadingToCalculatedGpsHeading = false;
             break;
           }
         }
-        if (resetSensorHeadingToCalculatedGpsHeading) {
+        if (resetSensorHeadingToCalculatedGpsHeading)
+        {
           mFieldOrientation.setCurrentFieldHeading(mCurrentCalculatedGpsHeading);
           // Note, I could take an average of the last few readings instead.
-          if (mTalkingGps) {
+          if (mTalkingGps)
+          {
             mTts.speak("Calculated " + (int) heading);
           }
         }

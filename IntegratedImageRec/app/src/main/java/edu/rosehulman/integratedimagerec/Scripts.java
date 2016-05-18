@@ -154,7 +154,7 @@ public class Scripts
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION 36 70 -81 -123 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION 36 40 -90 -1000 90");
             }
         }, 300);
         mCommandHandler.postDelayed(new Runnable()
@@ -162,7 +162,7 @@ public class Scripts
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION 38 90 -81 -155 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION 38 80 -81 -155 90");
             }
         }, 1000);
         mCommandHandler.postDelayed(new Runnable()
@@ -192,7 +192,7 @@ public class Scripts
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION 9 64 -49 -166 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION 9 64 -55 -166 90");
             }
         }, 300);
         mCommandHandler.postDelayed(new Runnable()
@@ -230,7 +230,7 @@ public class Scripts
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION -13 70 -81 -123 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION -13 70 -90 -140 90");
             }
         }, 300);
         mCommandHandler.postDelayed(new Runnable()
