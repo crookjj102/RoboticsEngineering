@@ -98,6 +98,7 @@ public class ImageRecActivity extends RobotActivity implements CameraBridgeViewB
     private TextView mRangeHTextView, mRangeSTextView, mRangeVTextView;
     private Mat mRgba;
 
+
     protected ViewFlipper mViewFlipper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,8 @@ public class ImageRecActivity extends RobotActivity implements CameraBridgeViewB
 
         mOpenCvCameraView = (CameraBridgeViewBase)findViewById(R.id.color_blob_detection_activity_surface_view);
         mOpenCvCameraView.setCvCameraViewListener(this);
+
+
 
         if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)) {
             Log.d(TAG, "Everything should be fine with using the camera.");

@@ -20,7 +20,6 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import edu.rosehulman.me435.NavUtils;
-import edu.rosehulman.me435.RobotActivity;
 
 public class GolfBallDeliveryActivity extends ImageRecActivity
 {
@@ -50,7 +49,7 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
         SEEKING_HOME
     }
 
-    public State mState;
+    public static State mState;
     private Scripts mScripts;
 
     /**
@@ -76,6 +75,8 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
     private Button mTeamChangeButton, mGoOrMissionCompleteButton;
 
     private Button mStartStop;
+
+    private CircularMovingAverageArray orientationFilter;
 
     /**
      * An array constants (of size 7) that keeps a reference to the different ball color images resources.
@@ -178,7 +179,7 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
         mMatchTimeTextView = (TextView) findViewById(R.id.match_time_textview);
         mGoOrMissionCompleteButton = (Button) findViewById(R.id.go_or_mission_complete_button);
 
-
+        orientationFilter = new CircularMovingAverageArray(10);
         mScripts = new Scripts(this);
 
         mJumboXTextView = (TextView) findViewById(R.id.jumbo_x);
@@ -191,15 +192,11 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
         boolean hideFakeGpsButtons = true;
         if (hideFakeGpsButtons)
         {
-            Toast.makeText(this,"time to hide these buttons", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "time to hide these buttons", Toast.LENGTH_SHORT).show();
             TableLayout fakeGpsButtonTable = (TableLayout) findViewById(R.id.fake_gps_button_table);
             fakeGpsButtonTable.setVisibility(View.GONE);
         }
         setState(State.WARMUP);
-
-        setLocationToColor(1, BallColor.RED);
-        setLocationToColor(2, BallColor.WHITE);
-        setLocationToColor(3, BallColor.BLUE);
 
     }
 
@@ -212,6 +209,44 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
     {
         mBallImageButtons[location - 1].setImageResource(BALL_DRAWABLE_RESOURCES[ballColor.ordinal()]);
         mLocationColors[location - 1] = ballColor;
+        if (mOnRedTeam)
+        {
+            if (ballColor == BallColor.BLUE || ballColor == BallColor.YELLOW)
+            {
+                mFarBallLocation = location;
+            }
+            else if (ballColor == BallColor.GREEN || ballColor == BallColor.RED)
+            {
+                mNearBallLocation = location;
+            }
+            else if (ballColor == BallColor.WHITE)
+            {
+                mWhiteBallLocation = location;
+            }
+            else if (ballColor == BallColor.BLACK)
+            {
+                mWhiteBallLocation = 0;
+            }
+        }
+        else//Blue team.
+        {
+            if (ballColor == BallColor.BLUE || ballColor == BallColor.YELLOW)
+            {
+                mNearBallLocation = location;
+            }
+            else if (ballColor == BallColor.GREEN || ballColor == BallColor.RED)
+            {
+                mFarBallLocation = location;
+            }
+            else if (ballColor == BallColor.WHITE)
+            {
+                mWhiteBallLocation = location;
+            }
+            else if (ballColor == BallColor.BLACK)
+            {
+                mWhiteBallLocation = 0;
+            }
+        }
     }
 
     /**
@@ -270,8 +305,9 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
      * Click for jumbotron thing
      */
 
-    public void goAndOrStop(View view){
-        Toast.makeText(this,"should probably set the state or something",Toast.LENGTH_SHORT).show();
+    public void goAndOrStop(View view)
+    {
+        Toast.makeText(this, "should probably set the state or something", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -330,23 +366,6 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
     public void handlePerformBallTest(View view)
     {
         sendCommand("TEST");
-        onCommandReceived("1R");
-        mCommandHandler.postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                onCommandReceived("2W");
-            }
-        }, 2000);
-        mCommandHandler.postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                onCommandReceived("3B");
-            }
-        }, 2000);
     }
 
     /**
@@ -457,6 +476,7 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
     public void handleZeroHeading(View view)
     {
         mFieldOrientation.setCurrentFieldHeading(0.0);
+        orientationFilter.clearArray();
     }
 
     public void handleGoOrMissionComplete(View view)
@@ -470,11 +490,18 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
             mMatchStartTime = System.currentTimeMillis();
             updateMissionStrategyVariables();
             mGoOrMissionCompleteButton.setBackgroundResource(R.drawable.red_button);
-            mGoOrMissionCompleteButton.setText("MISSION COMPLETE");
+            mGoOrMissionCompleteButton.setText("EMERGENCY STOP");
             setState(State.NEAR_BALL_SCRIPT);
         }
         else if (mState == State.WAITING_FOR_PICKUP)
         {
+            setState(State.READY_FOR_MISSION);
+        }
+        else{
+            mMatchStartTime = System.currentTimeMillis();
+            updateMissionStrategyVariables();
+            mGoOrMissionCompleteButton.setBackgroundResource(R.drawable.green_button);
+            mGoOrMissionCompleteButton.setText("GO!");
             setState(State.READY_FOR_MISSION);
         }
     }
@@ -483,20 +510,39 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
     protected void onCommandReceived(String receivedCommand)
     {
         super.onCommandReceived(receivedCommand);
-        //TODO: Don't be shitty
-        if (receivedCommand.equalsIgnoreCase("1R"))
-        {
-            setLocationToColor(1, BallColor.RED);
-        }
-        else if (receivedCommand.equalsIgnoreCase("2W"))
-        {
-            setLocationToColor(2, BallColor.WHITE);
-        }
-        else if (receivedCommand.equalsIgnoreCase("3B"))
-        {
-            setLocationToColor(3, BallColor.BLUE);
-        }
 
+        setColorFromSerialCommand(receivedCommand.charAt(0),1);
+        setColorFromSerialCommand(receivedCommand.charAt(1),2);
+        setColorFromSerialCommand(receivedCommand.charAt(2),3);
+
+    }
+    private void setColorFromSerialCommand(char letter, int loc){
+        switch (letter)
+        {
+            case 'A':
+                setLocationToColor(loc, BallColor.NONE);
+                break;
+            case '0':
+                setLocationToColor(loc, BallColor.BLACK);
+                break;
+            case '1':
+                setLocationToColor(loc, BallColor.BLUE);
+                break;
+            case '2':
+                setLocationToColor(loc, BallColor.GREEN);
+                break;
+            case '3':
+                setLocationToColor(loc, BallColor.RED);
+                break;
+            case '4':
+                setLocationToColor(loc, BallColor.YELLOW);
+                break;
+            case '5':
+                setLocationToColor(loc, BallColor.WHITE);
+                break;
+            default:
+                //do nothing.
+        }
     }
 
     @Override
@@ -539,8 +585,9 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
     @Override
     public void onSensorChanged(double fieldHeading, float[] orientationValues)
     {
-        super.onSensorChanged(fieldHeading, orientationValues);
-        mSensorOrientationTextView.setText(getString(R.string.degrees_format, fieldHeading));
+        orientationFilter.addNewData(fieldHeading);
+        super.onSensorChanged(orientationFilter.getMovingAverage(), orientationValues);
+        mSensorOrientationTextView.setText(getString(R.string.degrees_format, orientationFilter.getMovingAverage()));
     }
 
     public void setState(State newState)
@@ -573,7 +620,7 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
                 mGuessXYTextView.setText("---");
                 mScripts.nearBallScript();
 
-                ViewFlipper localFlipper = (ViewFlipper)findViewById(R.id.my_view_flipper);
+                ViewFlipper localFlipper = (ViewFlipper) findViewById(R.id.my_view_flipper);
                 localFlipper.setDisplayedChild(2);
                 break;
             case DRIVE_TOWARD_FAR_BALL:
@@ -639,13 +686,13 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
         mStateTimeTextView.setText("" + getStateTimeMs() / 1000);
         mGuessXYTextView.setText("(" + (int) mGuessX + ", " + (int) mGuessY + ")");
 
-        mJumboXTextView.setText("" + (int)mGuessX);
-        mJumboYTextView.setText("" + (int)mGuessY);
+        mJumboXTextView.setText("" + (int) mGuessX);
+        mJumboYTextView.setText("" + (int) mGuessY);
 
         // Match timer.
         long matchTimeMs;
         long timeRemainingSeconds = MATCH_LENGTH_MS / 1000;
-        if (mState != State.READY_FOR_MISSION&&mState!= State.WARMUP)
+        if (mState != State.READY_FOR_MISSION && mState != State.WARMUP)
         {
             matchTimeMs = getMatchTimeMs();
             timeRemainingSeconds = (MATCH_LENGTH_MS - matchTimeMs) / 1000;
@@ -666,9 +713,11 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
                 break;
             case DRIVE_TOWARD_FAR_BALL:
                 seekTargetAt(FAR_BALL_GPS_X, mFarBallGpsY);
-                if(mConeFound){
+                if (mConeFound)
+                {
                     Log.d(TAG, "I see a cone!");
-                    if(mConeSize > 0.1){
+                    if (mConeSize > 0.1)
+                    {
                         Log.d(TAG, "CONE IS VERY BIG!");
                     }
                 }
