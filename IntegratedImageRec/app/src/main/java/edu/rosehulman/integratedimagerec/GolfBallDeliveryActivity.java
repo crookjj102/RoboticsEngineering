@@ -618,7 +618,7 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
             case NEAR_BALL_SCRIPT:
                 mGpsInfoTextView.setText("---");
                 mGuessXYTextView.setText("---");
-                mScripts.nearBallScript();
+//                mScripts.nearBallScript();
 
                 ViewFlipper localFlipper = (ViewFlipper) findViewById(R.id.my_view_flipper);
                 localFlipper.setDisplayedChild(2);
@@ -627,7 +627,7 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
                 //handled in loop
                 break;
             case FAR_BALL_SCRIPT:
-                mScripts.farBallScript();
+//                mScripts.farBallScript();
                 break;
             case DRIVE_TOWARDS_HOME:
                 //handled in loop
@@ -649,19 +649,6 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
     {
         mNearBallGpsY = -50.0; // Note, X value is a constant.
         mFarBallGpsY = 50.0; // Note, X value is a constant.
-        mNearBallLocation = 1;
-        mWhiteBallLocation = 0; // Assume there is no white ball present for now (update later).
-        mFarBallLocation = 3;
-
-        // Example of doing real planning.
-        for (int i = 0; i < 3; i++)
-        {
-            BallColor currentLocationsBallColor = mLocationColors[i];
-            if (currentLocationsBallColor == BallColor.WHITE)
-            {
-                mWhiteBallLocation = i + 1;
-            }
-        }
 
         Log.d(TAG, "Near ball is position " + mNearBallLocation + " so drive to " + mNearBallGpsY);
         Log.d(TAG, "Far ball is position " + mFarBallLocation + " so drive to " + mFarBallGpsY);
@@ -706,11 +693,23 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
         switch (mState)
         {
             case WARMUP:
-                if (getStateTimeMs() > 30000)
+                if (getStateTimeMs() > 300)
                 {
                     setState(State.READY_FOR_MISSION);
                 }
                 break;
+            case NEAR_BALL_SCRIPT:
+                seekTargetAt(NEAR_BALL_GPS_X, mFarBallGpsY);
+                if (mConeFound)
+                {
+                    Log.d(TAG, "I see a cone!");
+                    if (mConeSize > 0.1)
+                    {
+                        Log.d(TAG, "CONE IS VERY BIG!");
+                    }
+                }
+                break;
+
             case DRIVE_TOWARD_FAR_BALL:
                 seekTargetAt(FAR_BALL_GPS_X, mFarBallGpsY);
                 if (mConeFound)

@@ -22,7 +22,7 @@ public class Scripts
     /**
      * Time in milliseconds needed to perform a ball removal.
      */
-    private int ARM_REMOVAL_TIME_MS = 3000;
+    private int ARM_REMOVAL_TIME_MS = 4000;
 
     /**
      * Simple constructor.
@@ -60,19 +60,20 @@ public class Scripts
     {
         if (GolfBallDeliveryActivity.mState != GolfBallDeliveryActivity.State.READY_FOR_MISSION)
         {
-            Toast.makeText(mGolfBallDeliveryActivity, "Drive 103 ft to near ball.", Toast.LENGTH_SHORT).show();
-            double distanceToNearBall = NavUtils.getDistance(15, 0, 90, 50);//What the hell is this? Hardcoded values?
+            double distanceToNearBall = NavUtils.getDistance(15, 0, 90, 50);
             long driveTimeToNearBallMs = (long) (distanceToNearBall / RobotActivity.DEFAULT_SPEED_FT_PER_SEC * 1000);
-            driveTimeToNearBallMs = 3000; // Make this mock script not take so long.
-            mGolfBallDeliveryActivity.sendWheelSpeed(mGolfBallDeliveryActivity.mLeftStraightPwmValue, mGolfBallDeliveryActivity.mRightStraightPwmValue);
+            mGolfBallDeliveryActivity.sendWheelSpeed(mGolfBallDeliveryActivity.mLeftStraightPwmValue,
+                    mGolfBallDeliveryActivity.mRightStraightPwmValue);
             mCommandHandler.postDelayed(new Runnable()
             {
                 @Override
                 public void run()
                 {
+                    mGolfBallDeliveryActivity.sendWheelSpeed(0,0);
                     removeBallAtLocation(mGolfBallDeliveryActivity.mNearBallLocation);
                 }
             }, driveTimeToNearBallMs);
+
             mCommandHandler.postDelayed(new Runnable()
             {
                 @Override
@@ -95,7 +96,7 @@ public class Scripts
     {
         if (mGolfBallDeliveryActivity.mState != GolfBallDeliveryActivity.State.READY_FOR_MISSION)
         {
-            mGolfBallDeliveryActivity.sendWheelSpeed(0, 0);
+
             removeBallAtLocation(mGolfBallDeliveryActivity.mFarBallLocation);
             mCommandHandler.postDelayed(new Runnable()
             {
@@ -111,6 +112,7 @@ public class Scripts
                     if (mGolfBallDeliveryActivity.mState == GolfBallDeliveryActivity.State.FAR_BALL_SCRIPT)
                     {
                         mGolfBallDeliveryActivity.setState(GolfBallDeliveryActivity.State.DRIVE_TOWARDS_HOME);
+                        mGolfBallDeliveryActivity.sendWheelSpeed(0, 0);
                     }
 
                 }
@@ -171,6 +173,14 @@ public class Scripts
                 mGolfBallDeliveryActivity.setLocationToColor(1, GolfBallDeliveryActivity.BallColor.NONE);
             }
         }, ARM_REMOVAL_TIME_MS);
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                mGolfBallDeliveryActivity.sendCommand("POSITION 0 90 0 -90 90");
+            }
+        }, 2000);
     }
 
 
@@ -201,6 +211,14 @@ public class Scripts
                 mGolfBallDeliveryActivity.setLocationToColor(2, GolfBallDeliveryActivity.BallColor.NONE);
             }
         }, ARM_REMOVAL_TIME_MS);
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                mGolfBallDeliveryActivity.sendCommand("POSITION 0 90 0 -90 90");
+            }
+        }, 2000);
     }
 
 
@@ -212,7 +230,7 @@ public class Scripts
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION -14 67 -72 -134 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION -13 70 -81 -123 90");
             }
         }, 300);
         mCommandHandler.postDelayed(new Runnable()
@@ -220,7 +238,7 @@ public class Scripts
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION -23 76 -62 -168 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION -28 90 -81 -155 90");
             }
         }, 1000);
         mCommandHandler.postDelayed(new Runnable()
@@ -231,5 +249,13 @@ public class Scripts
                 mGolfBallDeliveryActivity.setLocationToColor(3, GolfBallDeliveryActivity.BallColor.NONE);
             }
         }, ARM_REMOVAL_TIME_MS);
+        mCommandHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                mGolfBallDeliveryActivity.sendCommand("POSITION 0 90 0 -90 90");
+            }
+        }, 2000);
     }
 }
