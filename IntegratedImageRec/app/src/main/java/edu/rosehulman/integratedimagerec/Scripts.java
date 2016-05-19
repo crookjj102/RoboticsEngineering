@@ -148,13 +148,14 @@ public class Scripts
 
     private void removeBallAtOne()
     {
+        Toast.makeText(this.mGolfBallDeliveryActivity, "ball 1 remove",Toast.LENGTH_SHORT).show();
         mGolfBallDeliveryActivity.sendCommand("POSITION 0 90 0 -90 90");
         mCommandHandler.postDelayed(new Runnable()
         {
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION 36 40 -90 -1000 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION 33 56 -43 -141 90");
             }
         }, 300);
         mCommandHandler.postDelayed(new Runnable()
@@ -162,9 +163,9 @@ public class Scripts
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION 38 80 -81 -155 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION 33 56 -42 -175 90");
             }
-        }, 1000);
+        }, 1200);
         mCommandHandler.postDelayed(new Runnable()
         {
             @Override
@@ -186,6 +187,7 @@ public class Scripts
 
     private void removeBallAtTwo()
     {
+        Toast.makeText(this.mGolfBallDeliveryActivity, "ball 2 remove",Toast.LENGTH_SHORT).show();
         mGolfBallDeliveryActivity.sendCommand("POSITION 0 90 0 -90 90");
         mCommandHandler.postDelayed(new Runnable()
         {
@@ -224,13 +226,14 @@ public class Scripts
 
     private void removeBallAtThree()
     {
+        Toast.makeText(this.mGolfBallDeliveryActivity, "ball 3 remove",Toast.LENGTH_SHORT).show();
         mGolfBallDeliveryActivity.sendCommand("POSITION 0 90 0 -90 90");
         mCommandHandler.postDelayed(new Runnable()
         {
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION -13 70 -90 -140 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION -23 58 -42 -141 90");
             }
         }, 300);
         mCommandHandler.postDelayed(new Runnable()
@@ -238,9 +241,9 @@ public class Scripts
             @Override
             public void run()
             {
-                mGolfBallDeliveryActivity.sendCommand("POSITION -28 90 -81 -155 90");
+                mGolfBallDeliveryActivity.sendCommand("POSITION -23 58 -42 -180 90");
             }
-        }, 1000);
+        }, 1200);
         mCommandHandler.postDelayed(new Runnable()
         {
             @Override
