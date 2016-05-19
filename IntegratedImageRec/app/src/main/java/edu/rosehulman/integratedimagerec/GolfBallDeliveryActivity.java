@@ -561,8 +561,8 @@ public class GolfBallDeliveryActivity extends ImageRecActivity
     public void onSensorChanged(double fieldHeading, float[] orientationValues)
     {
         orientationFilter.addNewData(fieldHeading);
-        super.onSensorChanged(orientationFilter.getMovingAverage(), orientationValues);
-        mSensorOrientationTextView.setText(getString(R.string.degrees_format, orientationFilter.getMovingAverage()));
+        super.onSensorChanged(fieldHeading, orientationValues);
+        mSensorOrientationTextView.setText(getString(R.string.degrees_format, fieldHeading));
     }
 
     public void setState(State newState)
