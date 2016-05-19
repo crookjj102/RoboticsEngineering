@@ -8,7 +8,7 @@
 #define TEAM_NUMBER 10
 
 char manufacturer[] = "Rose-Hulman";
-char model[] = "GOLFBALLSTAND";
+char model[] = "Golf Ball Delivery";
 char versionStr[] = "1.0";
 
 
@@ -17,6 +17,8 @@ AndroidAccessory acc(manufacturer, model, model, versionStr,
                      "12345");
 
 int ballColor_1, ballColor_2, ballColor_3;
+
+byte desiredTeamNumber = TEAM_NUMBER;
 
 byte rxBuf[255];
 char txBuf[64];
@@ -69,6 +71,9 @@ void setup() {
 
     //attach servos
   wildThumperCom.sendAttachSelectedServos(0x3F);
+
+  //force team number
+  wildThumperCom.sendTeamNumberChangeRequest(desiredTeamNumber);
   
   delay(1500);
   acc.powerOn();
@@ -81,6 +86,10 @@ void loop() {
   if (acc.isConnected()) {
     int len = acc.read(rxBuf, sizeof(rxBuf), 1);
     if (len > 0) {
+
+      if(rxBuf[0] == 'T' && rxBuf[1] == 'E' && rxBuf[2] == 'S' && rxBuf[3] == 'T'){
+        runColors();
+      }
         robotAsciiCom.handleRxBytes(rxBuf, len);
     }
     if(done){
